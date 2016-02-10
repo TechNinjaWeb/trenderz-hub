@@ -8,7 +8,7 @@
   "main": "package.json",
   "moduleType": [],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/phreelyfe/trenderz-hub",
   "private": true,
   "ignore": [
     "**/.*",

@@ -49,6 +49,13 @@ nav {
 .browse-stores-container .content {
     margin-bottom: 20px;
 }
+
+.card.small {
+    height: 100%;
+}
+.card .card-content {
+    padding: 0 20px 0 20px;
+}
 .card .card-title {
     font-size: 18px;
 }
