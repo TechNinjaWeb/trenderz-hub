@@ -1,0 +1,18 @@
+<ul>
+    <li ng-repeat="store in stores">
+        <div>name: {{ store.name }} </div>
+        <ul>
+            <ul ng-repeat="product in store.products">
+                <li>product #{{ $index }}</li>
+                <li>product Name {{ product.name }}</li>
+                <li>product Price {{ product.price }}</li>
+                <li>Qty {{ product.qty }}</li>
+            </ul>
+        </ul>
+        <div>Membership: {{ store.membership.name }} </div>
+        <button ng-click="goTo('stores.detail', store)">View Store</button>
+        <button ng-click="goTo('home.index', store)">Home</button>
+        <a href="" ui-sref="stores.detail">Umm?</a>
+        
+    </li>
+</ul>

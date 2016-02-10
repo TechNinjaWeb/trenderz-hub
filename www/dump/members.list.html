@@ -1,0 +1,7 @@
+<ul>
+  <!--<li ng-repeat='member in members'>{{ member }}</li>-->
+  <li ng-repeat='member in members'>
+    <div class="store-name">{{ member.store }} 
+    <buton class="btn btn-primary goTo" ng-click="gotTo('members.detail', member)">View</buton></div>
+    </li>
+</ul>

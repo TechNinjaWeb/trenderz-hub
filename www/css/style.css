@@ -1,0 +1,72 @@
+/* Styles go here */
+
+nav {
+    background-color: rgba(73,0,90, 1);
+}
+.th-green {
+    background-color: #1E613A!important;
+}
+
+.th-purple {
+    background-color: purple;
+}
+
+.no-pad {
+    padding: 0!important;
+}
+.header.center {
+    color: #9BC056!important;
+    text-shadow: 1px 1px black;
+    margin-top: 8%;
+}
+
+.header, .sign-up-container {
+    color: seashell;
+    text-shadow: 1px 1px black;
+}
+
+.brand-logo img {
+    height: 80px;
+}
+
+.sign-up-container {
+    margin-top: 40px;
+}
+
+.call-to-action {
+    margin-bottom: 20px;
+}
+
+.parallax-container {
+    opacity: 0.8;
+    height: 440px;
+}
+
+.browse-stores-container {
+    margin-top: 50px;
+}
+
+.browse-stores-container .content {
+    margin-bottom: 20px;
+}
+.card .card-title {
+    font-size: 18px;
+}
+
+.card .price {
+    font-size: 14px;
+}
+
+.card .icon-container {
+    margin-top: 12px;
+}
+
+.card .card-content p {
+    position: absolute;
+}
+
+.card-footer {
+    /*background-color: blue;*/
+    /*margin-top: 0px;*/
+    height: 36px;
+}

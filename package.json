@@ -1,0 +1,25 @@
+{
+  "name": "trenderzhub",
+  "version": "1.0.0",
+  "description": "Trenderz Hub Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "author": "TechNinja",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "client-sessions": "^0.7.0",
+    "compression": "^1.6.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "mongodb": "^2.1.6",
+    "mongoose": "^4.4.2",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "tracer": "^0.8.3"
+  }
+}

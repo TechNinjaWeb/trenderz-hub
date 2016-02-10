@@ -1,0 +1,40 @@
+[
+  {
+    "id": "0283974059283h450928y34",
+    "store": "Teresas Trinkets",
+    "alt": "This is images alt txt",
+    "header": "http://lorempixel.com/1920/1080/abstract/1/",
+    "products": 
+    [
+      {
+        "name": "awesome tree",
+        "price": 49.5,
+        "description": "It's the coolest looking trinket tree that you could ever find"
+      },
+      {
+        "name": "too awesome tree",
+        "price": 25.00,
+        "description": "This is your thin crust"
+      }
+    ]
+  },
+  {
+    "id": "09809870a98f7d0asd0987a098",
+    "store": "Georges Curious Gifts",
+    "alt": "Alter ego image text",
+    "header": "http://lorempixel.com/1920/1080/abstract/2/",
+    "products": 
+    [
+      {
+        "name": "curious george status",
+        "price": 1000.00,
+        "description": "You know what this is! It's Curious George back for another adventure"
+      },
+      {
+        "name": "curious george hat",
+        "price": 85.22,
+        "description": "The one and only hat worn by Curious George"
+      }
+    ]
+  }
+]

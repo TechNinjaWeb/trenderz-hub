@@ -1,0 +1,13 @@
+<member-store api="./stores.json">
+  <div class="header">
+    <img style="width:200px;height:100px;" ng-src="{{ member.header }}" alt="{{ member.alt }}" class="header-img" />
+  </div>
+  <div class="store">Store: {{ member.store }}</div>
+  <ul class="products" ng-repeat="product in member.products">
+    <li class="product">Product Name: {{ product.name }}</li>
+    <li class="product">Price: {{ product.price }}</li>
+  </ul>
+  <!--<member-header></member-header>-->
+  <!--<member-content></member-content>-->
+  <!--<member-footer></member-footer>-->
+</member-store>
