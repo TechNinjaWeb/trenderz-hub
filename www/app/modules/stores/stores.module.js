@@ -24,7 +24,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                     controller: 'navCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html'
+                    templateUrl: './views/template/home.footer.html',
+                    controller: 'footerCtrl'
                 }
             }
         })

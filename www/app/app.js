@@ -20,7 +20,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                     controller: 'navCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html'
+                    templateUrl: './views/template/home.footer.html',
+                    controller: 'footerCtrl'
                 }
             }
         })
@@ -29,6 +30,79 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             views: {
                 'body@home': {
                     templateUrl: './views/pages/home.page.html'
+                }
+            }
+        })
+        .state('pages', {
+            abstract: true,
+            views: {
+                '@': {
+                    template: "<div ui-view='body'></div>"
+                },
+                'navigation@': {
+                    templateUrl: './views/template/home.navigation.html',
+                    controller: 'navCtrl'
+                },
+                'footer@': {
+                    templateUrl: './views/template/home.footer.html',
+                    controller: 'footerCtrl'
+                }
+            }
+        })
+        .state('pages.info', {
+            url: '/info',
+            views: {
+                'body@pages': {
+                    templateUrl: './views/pages/info.page.html'
+                }
+            }
+        })
+        .state('pages.signup', {
+            url: '/signup',
+            views: {
+                'body@pages': {
+                    templateUrl: './views/pages/signup.page.html'
+                }
+            }
+        })
+        .state('pages.contact', {
+            url: '/contact',
+            views: {
+                'body@pages': {
+                    templateUrl: './views/pages/contact.page.html'
+                }
+            }
+        })
+        .state('policies', {
+            url: '/policies',
+            abstract: true,
+            views: {
+                '@': {
+                    template: "<div ui-view='body'></div>"
+                },
+                'navigation@': {
+                    templateUrl: './views/template/home.navigation.html',
+                    controller: 'footerCtrl'
+                },
+                'footer@': {
+                    templateUrl: './views/template/home.footer.html',
+                    controller: 'footerCtrl'
+                }
+            }
+        })
+        .state('policies.mall', {
+            url: '/mall',
+            views: {
+                'body@policies': {
+                    templateUrl: './views/pages/mall.policy.html'
+                }
+            }
+        })
+        .state('policies.privacy', {
+            url: '/privacy',
+            views: {
+                'body@policies': {
+                    templateUrl: './views/pages/privacy.policy.html'
                 }
             }
         });
@@ -82,4 +156,36 @@ app.controller('navCtrl', ['$scope', '$state', '$stateParams', 'Categories', fun
         
         console.log("Scope Cat", scope.links);
     });
+}]);
+
+app.controller('footerCtrl', ['$scope', '$state', '$stateParams', function( scope, state, params ){
+    scope.links = {
+        about: {
+            title: "Company Info",
+            sref: 'pages.info'
+        },
+        contact: {
+            title: "Contact Us",
+            sref: 'pages.contact'
+        },
+        orders: {
+            title: "Orders Page",
+            sref: 'pages.order'
+        },
+        mallPolicy: {
+            title: "Mall Policy",
+            sref: 'policies.mall'
+        },
+        privacyPolicy: {
+            title: "Privacy Policy",
+            sref: 'policies.privacy'
+        },
+        signup: {
+            title: 'Sign Up',
+            sref: 'pages.signup'
+        }
+        
+    };
+    
+    
 }]);

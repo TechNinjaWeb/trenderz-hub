@@ -91,3 +91,20 @@ nav {
     padding-left: 32px;
     padding-right: 32px;
 }
+
+li.vertical-divider {
+    padding-left: 10px;
+    padding-right: 20px;
+}
+li.vertical-divider:before {
+    /*content: "";*/
+    /*height: 100%;*/
+    /*color: white;*/
+    /*position: absolute;*/
+    /*border: 2px solid white;*/
+    /*top: 0;*/
+}
+
+div[ui-view="navigation"] li:last-child {
+    margin-right: 20px;
+}
