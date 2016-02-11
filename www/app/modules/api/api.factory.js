@@ -20,4 +20,15 @@ app.service('Products', ['$resource', function($resource) {
             id: '@id'
         }
     });
+}])
+
+app.service('Categories', ['$resource', function($resource) {
+    return window.resource = $resource('https://trenderzhub-techninja.c9users.io/Categories/:name', {name: '@name'}, 
+    {
+        getId: {
+            method: 'GET',
+            isArray: true,
+            name: '@name'
+        }
+    });
 }]);

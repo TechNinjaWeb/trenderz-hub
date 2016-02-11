@@ -33,6 +33,7 @@ app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use('/scripts', express.static(__dirname + '/bower_components'));
 app.use('/css', express.static(__dirname + '/bower_components'));
 app.use('/font', express.static(__dirname + '/bower_components'));
+app.use('/imags', express.static(__dirname + '/www/images'));
 
 app.use(sessions({
     cookieName: 'THCookie', // cookie name dictates the key name added to the request object 

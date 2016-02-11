@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <pre style="font: 5px/3px monospace;">                                                                                                             
+    <pre style="font: 2px/1px monospace;">                                                                                                             
                                                                                                              
                                                                `                                             
                                                             `:`                                              

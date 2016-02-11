@@ -25,9 +25,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                 }
             }
         });
-        
-        // $locationProvider.html5Mode(true);
-        
 });
 app.controller('productsCtrl', ['$scope', 'Products', '$stateParams', function( scope, Products, params ){
     console.log("Params:", params);

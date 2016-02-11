@@ -3,7 +3,10 @@ var mongo = require('mongoose'),
     Schema = mongo.Schema;
     
 var Category = new Schema({
-   name: String,
+   name: {
+       type: String,
+       unique: true
+   },
    description: String,
    image: String
 });

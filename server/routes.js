@@ -3,6 +3,7 @@ var Member = require('../models/_Member.js');
 var Product = require('../models/_Product.js');
 var Store = require('../models/_Store.js');
 var Membership = require('../models/_Membership.js');
+var Category = require('../models/_Category.js');
 
 var parse = function(data) {
     var d;
@@ -14,6 +15,10 @@ var parse = function(data) {
         return d;
     }
     return d;
+}
+
+var capitalize = function( word ) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 module.exports = {
@@ -34,6 +39,77 @@ module.exports = {
     },
     // Really Important Routes Start Here
     users: { get: User.get, post: User.post, getId: User.getId, getUser: User.getUser },
+    categories: {
+        get: function(req, res, next){
+            Category.find({}).exec(function(err, categories){
+                if (err) return res.status(200).json([]), console.log("Error", err);
+                return res.status(200).json(categories);
+            });
+        },
+        post: function(req, res, next){
+            var data = req.query;
+            var category = new Category( data );
+            
+            console.log("Category", category);
+            category.save(function(err, response){
+                if (err) return res.status(200).json({error: err}), console.log("Error", err);
+                return res.status(200).json(response);
+            });
+        },
+        getId: function(req, res, next) {
+            var id = req.params.id ? req.params.id : null;
+            // If ID Null, return null
+            if (!id) return res.status(200).json({message: "Empty"});
+            // Perform Query, return user
+            Category.findOne({ '_id': id }).exec(function( err, user ){
+                // Pass Err Object to client for now
+                if (err) return res.status(200).json(err), console.log("Error", err);
+                else return res.status(200).json(user);
+            });
+        },
+        getCat: function(req, res, next){
+            var response = {};
+            var name = req.params.name ? req.params.name : null;
+            // Capitalize First Letter
+            name = capitalize( name );
+            // If ID Null, return null
+            if (!name) return res.status(200).json({message: "Empty"});
+            console.log("Cat Name to search", name);
+            // Find Category ID
+            Category.findOne({ 'name': name }).exec(function( err, cat ){
+                if (err) return res.status(200).json({message: "Could Not Get Category", error: err});
+                // Perform Query, return Products matching category
+                Product.find({categories: cat._id}).exec(function(err, products){
+                    // Build Response
+                    response.products = products;
+                    response._id = cat._id;
+                    response.name = cat.name;
+                    response.description = cat.description;
+                    response.image = cat.image;
+                    // Error Handling and Response                    
+                    if (err) return res.status(200).json({message: "Could Not Get Products", error: err, response: response});
+                    return res.status(200).json(response);
+                });
+            });
+        },
+        getName: function(req, res, next) {
+            var name = req.params.name ? req.params.name : null;
+            // Capitalize First Letter
+            name = capitalize( name );
+            // If ID Null, return null
+            if (!name) return res.status(200).json({message: "Empty"});
+            console.log("Cat Name to search", name);
+            // Perform Query, return user
+            Category.findOne({ 'name': name }).exec(function( err, cat ){
+                console.log("Got Cat", cat);
+                // Pass Err Object to client for now
+                if (err) return res.status(200).json(err), console.log("Error", err);
+                else if (!err && cat) return res.status(200).json(cat);
+                else res.status(200).json({message: "Counld not find Category", response: cat, error: err})
+            });
+        },
+        putId: function(req, res, next){ res.send('not implemented')}
+    },
     members: {
         get: function(req, res, next){
             Member.find({}).populate('stores').exec(function(err, members){

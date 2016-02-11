@@ -18,6 +18,8 @@
     "tests"
   ],
   "dependencies": {
-    "Materialize": "materialize#~0.97.5"
+    "Materialize": "materialize#~0.97.5",
+    "AngularHammer": "ryanmullins-angular-hammer#~2.1.10",
+    "animate.css": "~3.5.1"
   }
 }

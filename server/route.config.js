@@ -43,6 +43,15 @@ module.exports = function( app ) {
         .get(routes.stores.getId)
         .put(routes.stores.putId);
     
+    // Category Routes
+    app.route('/Categories')
+        .get(routes.categories.get)
+        .post(routes.categories.post);
+        
+    app.route('/Categories/:name')
+        .get(routes.categories.getCat)
+        .put(routes.categories.putId);
+        
     // Default Route Renderer
     app.get('/', function(req, res, next) {
         console.log('Basic Get');
