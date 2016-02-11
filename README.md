@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
 
 <head>
-    <!--Let browser know website is optimized for mobile-->
     <meta title="Trenderz Hub Edmonton's Online Shopping Mall">
 </head>
 
@@ -62,6 +59,3 @@
 <p class="description">
     Trenderzhub.ca Ste Remake. 
 </p>
-</body>
-
-</html>
