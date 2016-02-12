@@ -29,7 +29,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             views: {
                 'body@stores': {
                     templateUrl: './app/modules/stores/views/pages/stores.page.html',
-                    controller: 'storesCtrl'
+                    controller: 'storesCtrl',
+                    resolve: {
+                        Stores: 'Stores',
+                        stores: function( Stores ) {
+                            return Stores.query().$promise;
+                        }
+                    }
                 }
             }
         })
@@ -38,49 +44,49 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             views: {
                 'body@stores': {
                     templateUrl: './app/modules/stores/views/pages/stores.detail.html',
-                    controller: "storeDetailCtrl"
+                    controller: "storeDetailCtrl",
+                    resolve: {
+                        Stores: 'Stores',
+                        store: function( Stores, $stateParams ){
+                            return Stores.get( {id: $stateParams.id}).$promise;
+                        }
+                    }
                 }
             }
         })
         .state('stores.category', {
             url: '/cateogry/:name',
-            resolve: {
-                id: function($stateParams) {
-                    console.log("StateParams ID", $stateParams);
-                    return $stateParams.id;
-                }
-            },
             views: {
                 'body@stores': {
                     templateUrl: './app/modules/stores/views/pages/stores.category.html',
-                    controller: "storeCategoryController"
+                    controller: "storeCategoryController",
+                    resolve: {
+                        Categories: 'Categories',
+                        category: function( Categories, $stateParams ) {
+                            return  Categories.get( {name: $stateParams.name}).$promise;
+                        }
+                    }
                 }
             }
         });;
-        
-        // $locationProvider.html5Mode(true);
-        
 });
-app.controller('storesCtrl', ['$scope', 'Stores', '$stateParams', function( scope, Stores, params ){
+app.controller('storesCtrl', ['$scope', 'stores', '$stateParams', function( scope, stores, params ){
     console.log("Params:", params, scope);
-    Stores.query(function( stores ){
-        scope.stores = stores;
-    });
+
+    scope.stores = stores
     
 }]);
 
-app.controller('storeDetailCtrl', ['$scope', 'Stores', '$stateParams', function( scope, Stores, params ){
+app.controller('storeDetailCtrl', ['$scope', 'store', '$stateParams', function( scope, store, params ){
     console.log("Get Params ID?", params.id);
-    Stores.get( {id: params.id}, function( store ){ 
-       scope.store = store; 
-    });
+
+    scope.store = store;
     
 }]);
 
-app.controller('storeCategoryController', ['$scope', 'Categories', '$stateParams', function( scope, Category, params ){
-    console.warn("Category ID?", params.name, [params]);
-    Category.get( {name: params.name}, function( category ){ 
-       scope.category = category; 
-    });
+app.controller('storeCategoryController', ['$scope', 'category', '$stateParams', function( scope, category, params ){
+    console.warn("Got Categories Resolve", category);
+  
+    scope.category = category;
     
 }]);

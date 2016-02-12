@@ -23,7 +23,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             views: {
                 'body@products': {
                     templateUrl: './app/modules/products/views/pages/products.page.html',
-                    controller: 'productsCtrl'
+                    controller: 'productsCtrl',
+                    resolve: {
+                        Products: 'Products',
+                        products: function( Products ) {
+                            return Products.query().$promise;
+                        }
+                    }
                 }
             }
         })
@@ -32,23 +38,30 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             views: {
                 'body@products': {
                     templateUrl: './app/modules/products/views/pages/products.detail.html',
-                    controller: "productDetailCtrl"
+                    controller: "productDetailCtrl",
+                    resolve: {
+                        Products: 'Products',
+                        product: function(Products, $stateParams) {
+                            return Products.get( {id: $stateParams.id}).$promise;
+                        }
+                    }
                 }
             }
         });
 });
-app.controller('productsCtrl', ['$scope', 'Products', '$stateParams', function( scope, Products, params ){
+app.controller('productsCtrl', ['$scope', 'products', '$stateParams', function( scope, products, params ){
     console.log("Params:", params);
-    Products.query(function( products ){
-        scope.products = products;
-    });
+    // Products.query(function( products ){
+    //     scope.products = products;
+    // });
+    
+    scope.products = products;
     
 }]);
 
-app.controller('productDetailCtrl', ['$scope', 'Products', '$stateParams', function( scope, Products, params ){
+app.controller('productDetailCtrl', ['$scope', 'product', '$stateParams', function( scope, product, params ){
     console.log("Get Params ID?", params.id);
-    Products.get( {id: params.id}, function( product ){ 
-       scope.product = product; 
-    });
+    scope.product = product;
+    
     
 }]);
