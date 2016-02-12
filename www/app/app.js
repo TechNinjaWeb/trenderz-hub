@@ -5,6 +5,8 @@ var app = angular.module('th', [
     'th.stores',
     'th.products',
     'th.FeaturedProducts',
+    'th.admin',
+    'th.account'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -16,11 +18,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                     template: "<div ui-view='body'></div>"
                 },
                 'navigation@': {
-                    templateUrl: './views/template/home.navigation.html',
+                    templateUrl: './app/views/template/home.navigation.html',
                     controller: 'navCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html',
+                    templateUrl: './app/views/template/home.footer.html',
                     controller: 'footerCtrl'
                 }
             }
@@ -29,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/',
             views: {
                 'body@home': {
-                    templateUrl: './views/pages/home.page.html'
+                    templateUrl: './app/views/pages/home.page.html'
                 }
             }
         })
@@ -40,11 +42,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                     template: "<div ui-view='body'></div>"
                 },
                 'navigation@': {
-                    templateUrl: './views/template/home.navigation.html',
+                    templateUrl: './app/views/template/home.navigation.html',
                     controller: 'navCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html',
+                    templateUrl: './app/views/template/home.footer.html',
                     controller: 'footerCtrl'
                 }
             }
@@ -53,7 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/info',
             views: {
                 'body@pages': {
-                    templateUrl: './views/pages/info.page.html'
+                    templateUrl: './app/views/pages/info.page.html'
                 }
             }
         })
@@ -61,7 +63,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/signup',
             views: {
                 'body@pages': {
-                    templateUrl: './views/pages/signup.page.html',
+                    templateUrl: './app/views/pages/signup.page.html',
                     controller: 'signupCtrl'
                 }
             }
@@ -70,7 +72,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/membership',
             views: {
                 'body@pages': {
-                    templateUrl: './views/pages/membership.page.html',
+                    templateUrl: './app/views/pages/membership.page.html',
                     controller: 'membershipCtrl'
                 }
             }
@@ -79,7 +81,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/contact',
             views: {
                 'body@pages': {
-                    templateUrl: './views/pages/contact.page.html'
+                    templateUrl: './app/views/pages/contact.page.html'
                 }
             }
         })
@@ -91,11 +93,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                     template: "<div ui-view='body'></div>"
                 },
                 'navigation@': {
-                    templateUrl: './views/template/home.navigation.html',
+                    templateUrl: './app/views/template/home.navigation.html',
                     controller: 'footerCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html',
+                    templateUrl: './app/views/template/home.footer.html',
                     controller: 'footerCtrl'
                 }
             }
@@ -104,7 +106,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/mall',
             views: {
                 'body@policies': {
-                    templateUrl: './views/pages/mall.policy.html'
+                    templateUrl: './app/views/pages/mall.policy.html'
                 }
             }
         })
@@ -112,7 +114,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/privacy',
             views: {
                 'body@policies': {
-                    templateUrl: './views/pages/privacy.policy.html'
+                    templateUrl: './app/views/pages/privacy.policy.html'
                 }
             }
         });
@@ -188,7 +190,7 @@ app.controller('footerCtrl', ['$scope', '$state', '$stateParams', function(scope
         },
         orders: {
             title: "Orders Page",
-            sref: 'pages.order'
+            sref: 'account.orders'
         },
         mallPolicy: {
             title: "Mall Policy",

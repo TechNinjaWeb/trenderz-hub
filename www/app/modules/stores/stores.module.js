@@ -15,11 +15,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                     template: "<div ui-view='body'></div>"
                 },
                 'navigation@': {
-                    templateUrl: './views/template/home.navigation.html',
+                    templateUrl: './app/views/template/home.navigation.html',
                     controller: 'navCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html',
+                    templateUrl: './app/views/template/home.footer.html',
                     controller: 'footerCtrl'
                 }
             }
@@ -28,7 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             url: '/stores',
             views: {
                 'body@stores': {
-                    templateUrl: './views/pages/stores.page.html',
+                    templateUrl: './app/modules/stores/views/pages/stores.page.html',
                     controller: 'storesCtrl'
                 }
             }
@@ -37,7 +37,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             url: '/stores/:id',
             views: {
                 'body@stores': {
-                    templateUrl: './views/pages/stores.detail.html',
+                    templateUrl: './app/modules/stores/views/pages/stores.detail.html',
                     controller: "storeDetailCtrl"
                 }
             }
@@ -52,7 +52,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             },
             views: {
                 'body@stores': {
-                    templateUrl: './views/pages/stores.category.html',
+                    templateUrl: './app/modules/stores/views/pages/stores.category.html',
                     controller: "storeCategoryController"
                 }
             }

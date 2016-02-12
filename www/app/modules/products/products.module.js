@@ -9,11 +9,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                     template: "<div ui-view='body'></div>"
                 },
                 'navigation@': {
-                    templateUrl: './views/template/home.navigation.html',
+                    templateUrl: './app/views/template/home.navigation.html',
                     controller: 'navCtrl'
                 },
                 'footer@': {
-                    templateUrl: './views/template/home.footer.html',
+                    templateUrl: './app/views/template/home.footer.html',
                     controller: 'footerCtrl'
                 }
             }
@@ -22,7 +22,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             url: '/products',
             views: {
                 'body@products': {
-                    templateUrl: './views/pages/products.page.html',
+                    templateUrl: './app/modules/products/views/pages/products.page.html',
                     controller: 'productsCtrl'
                 }
             }
@@ -31,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             url: '/products/:id',
             views: {
                 'body@products': {
-                    templateUrl: './views/pages/products.detail.html',
+                    templateUrl: './app/modules/products/views/pages/products.detail.html',
                     controller: "productDetailCtrl"
                 }
             }

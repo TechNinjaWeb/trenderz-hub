@@ -57,5 +57,5 @@
                                                                                                              
 </pre>
 <p class="description">
-    Trenderzhub.ca Ste Remake. 
+    Trenderzhub.ca Site Remake. 
 </p>
