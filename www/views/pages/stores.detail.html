@@ -1,1 +1,17 @@
-Store Details: {{ store }}
+<div class="stores-detail container content">
+    <div class="stores-details-header col row">
+        <h3 class="store-name left-align col s10">{{ store.name }}</h3>
+        <span class="membership-badge right-align col s2">{{ store.membership.name }}</span>
+    </div>
+    <div class="slide-deck card row">
+        <div class="slide-deck-slide card-content white-text row">
+            <ul class="product-box col s10">
+                <ul class="product card col s6" style="color: black;" ng-repeat="product in store.products">
+                    <li>product Name {{ product.name }}</li>
+                    <li>product Price {{ product.price }}</li>
+                    <li>Qty {{ product.qty }}</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>

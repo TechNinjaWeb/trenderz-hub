@@ -52,6 +52,12 @@ module.exports = function( app ) {
         .get(routes.categories.getCat)
         .put(routes.categories.putId);
         
+    app.route('/register')
+        .post(routes.users.post);
+        
+    // app.route('/Install/:username/:password')
+    //     .get(routes.initializeDb);
+        
     // Default Route Renderer
     app.get('/', function(req, res, next) {
         console.log('Basic Get');

@@ -1,13 +1,13 @@
 var app = angular.module('th', [
-    'ngResource', 
-    'ui.router', 
-    'th.api', 
+    'ngResource',
+    'ui.router',
+    'th.api',
     'th.stores',
     'th.products',
     'th.FeaturedProducts',
-    ]);
+]);
 
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
         .state('home', {
             abstract: true,
@@ -61,7 +61,17 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             url: '/signup',
             views: {
                 'body@pages': {
-                    templateUrl: './views/pages/signup.page.html'
+                    templateUrl: './views/pages/signup.page.html',
+                    controller: 'signupCtrl'
+                }
+            }
+        })
+        .state('pages.membership', {
+            url: '/membership',
+            views: {
+                'body@pages': {
+                    templateUrl: './views/pages/membership.page.html',
+                    controller: 'membershipCtrl'
                 }
             }
         })
@@ -106,20 +116,33 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                 }
             }
         });
-        
-        $urlRouterProvider.otherwise('/');
-        // $locationProvider.html5Mode(true);
-        
+
+    $urlRouterProvider.otherwise('/');
+    // $locationProvider.html5Mode(true);
+
 });
 
-app.controller('appCtrl', ['$scope', '$state', '$stateParams', function( scope, state, params ){
-    scope.message = "This is app ctrl";
-    
-    scope.test = function(){
-        console.log("Working");
+app.run(['$rootScope', '$state', '$stateParams', function($rootScope, state, params) {
+    $rootScope.goTo = function(statename, data, params) {
+        if (!statename) return;
+        // Set ID on params object
+        if (data && data._id) params.id = data._id;
+        if (data && data.id) params.id = data.id;
+        if (data && data.name) params.name = data.name.trim().toLowerCase();
+
+        // Transition to state
+        state.go(statename, params);
+        // Response
+        console.log("Moving To State", statename, params);
     };
-    
-    scope.goTo = function( statename, data ) {
+}]);
+
+app.controller('appCtrl', ['$scope', '$state', '$stateParams', function(scope, state, params) {
+    scope.test = function(data) {
+        console.log("Testing", arguments);
+    };
+
+    scope.goTo = function(statename, data) {
         // Validate Statechange
         if (!statename) return;
         // Set ID on params object
@@ -127,38 +150,33 @@ app.controller('appCtrl', ['$scope', '$state', '$stateParams', function( scope, 
         if (data && data.id) params.id = data.id;
         if (data && data.name) params.name = data.name.trim().toLowerCase();
         // Set Param Data For Next State
-        params.data = data;
+        if (data) params.data = data;
+        // Invoke Rootscope Navigation
+        // rootScope.goTo( statename, null, params);
         // Transition to state
+        console.warn("Navigating To " + statename, ["data", data], ["params", params]);
         state.go(statename, params);
-        // Response
-        console.log("Moving To State", statename, params);
-    };
-    
-    // console.log("Controller Enabled", scope);
-    
-    window.appCtrl = scope;
+    }
 }]);
 
-app.controller('navCtrl', ['$scope', '$state', '$stateParams', 'Categories', function( scope, state, params, Category ){
+app.controller('navCtrl', ['$scope', '$state', '$stateParams', 'Categories', function(scope, state, params, Category) {
+    // Links Object
     scope.links = {};
-    
-    Category.query(function( categories ){
-        categories.forEach(function( cat ){
-            console.log("Got Category", cat);
+    // Get Categories
+    Category.query(function(categories) {
+        categories.forEach(function(cat) {
             var alias = cat.name.toLowerCase();
-            scope.links[ alias ] = {};
-            scope.links[ alias ].id = cat._id;
-            scope.links[ alias ].name = alias.toLowerCase();
-            scope.links[ alias ].title = cat.name.capitalize();
-            scope.links[ alias ].sref = "stores.category";
-            scope.links[ alias ].active = false;
+            scope.links[alias] = {};
+            scope.links[alias].id = cat._id;
+            scope.links[alias].name = alias.toLowerCase();
+            scope.links[alias].title = cat.name.capitalize();
+            scope.links[alias].sref = "stores.category";
+            scope.links[alias].active = false;
         }, this);
-        
-        console.log("Scope Cat", scope.links);
     });
 }]);
 
-app.controller('footerCtrl', ['$scope', '$state', '$stateParams', function( scope, state, params ){
+app.controller('footerCtrl', ['$scope', '$state', '$stateParams', function(scope, state, params) {
     scope.links = {
         about: {
             title: "Company Info",
@@ -184,8 +202,49 @@ app.controller('footerCtrl', ['$scope', '$state', '$stateParams', function( scop
             title: 'Sign Up',
             sref: 'pages.signup'
         }
-        
     };
+}]);
+
+app.controller('membershipCtrl', ['$scope', 'Memberships', function(scope, Levels) {
+    Levels.query(function(levels) {
+        scope.levels = levels;
+    });
+}]);
+
+app.controller('signupCtrl', ['$scope', 'Users', function(scope, Users) {
+    scope.user = {};
     
-    
+    scope.login = function( user )  {
+        console.log("Login User", user);
+    };
+}]);
+
+app.directive('pwCheck', ['Users', function(Users) {
+    return {
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+            var password = scope.user.password;
+            console.log("Password", password)
+            elem.add(password).on('keyup', function() {
+                scope.$apply(function() {
+                    var v = elem.val() === $(password).val();
+                    ctrl.$setValidity('pwmatch', v);
+                });
+            });
+            
+            scope.create = function(data) {
+                if (data.password !== data.confirm || !data.password) return console.warning("Passwords Do Not Match");
+                var User = new Users(data);
+                console.log("Created New User to save", User);
+                
+                User.$save(function( user ){
+                    if (user.error) {
+                        if (user.error.errmsg.search('duplicate')) return console.warning("Username Already Exists"), console.warn("Dup User", user.error);
+                        else return console.warn( user.error.errmsg ), console.warn("Cannot Determine Error", user.error);
+                    };
+                    console.log("Saved User", user);
+                })
+            };
+        }
+    }
 }]);

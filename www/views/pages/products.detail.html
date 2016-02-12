@@ -1,6 +1,7 @@
-<div class="product-container">
+<div class="content product container">
     <div class="name">{{ product.name }}</div>
     <div class="price">{{ product.price }}</div>
     <div class="qty">{{ product.qty }}</div>
     <div class="description">{{ product.description  | decodeText  }}</div>
+    <button class="btn products-store-btn" ng-click="goTo('stores.detail', product.belongsTo)">See More From This Store</button>
 </div>

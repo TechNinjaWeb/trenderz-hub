@@ -10,14 +10,9 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $stateProvider
         .state('stores', {
             abstract: true,
-            template: "<div ui-view='body'></div>"
-        })
-        .state('stores.browse', {
-            url: '/stores',
             views: {
-                'body@stores': {
-                    templateUrl: './views/pages/stores.page.html',
-                    controller: 'storesCtrl'
+                '@': {
+                    template: "<div ui-view='body'></div>"
                 },
                 'navigation@': {
                     templateUrl: './views/template/home.navigation.html',
@@ -26,6 +21,15 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
                 'footer@': {
                     templateUrl: './views/template/home.footer.html',
                     controller: 'footerCtrl'
+                }
+            }
+        })
+        .state('stores.browse', {
+            url: '/stores',
+            views: {
+                'body@stores': {
+                    templateUrl: './views/pages/stores.page.html',
+                    controller: 'storesCtrl'
                 }
             }
         })

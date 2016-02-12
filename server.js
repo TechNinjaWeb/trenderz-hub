@@ -18,7 +18,7 @@ var PORT = process.env.PORT || 9000,
 app.use(parse.json());
 
 // Require Routes
-require('./server/route.config.js')( app );
+require('./server/api.routes.js')( app );
 
 // Listen To Traffic
 http.createServer(app).listen(PORT, function() {

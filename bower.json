@@ -20,6 +20,7 @@
   "dependencies": {
     "Materialize": "materialize#~0.97.5",
     "AngularHammer": "ryanmullins-angular-hammer#~2.1.10",
-    "animate.css": "~3.5.1"
+    "animate.css": "~3.5.1",
+    "toastr": "~2.1.2"
   }
 }

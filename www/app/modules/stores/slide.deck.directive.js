@@ -6,10 +6,9 @@ app.directive('slideDeck', function($timeout, $compile){
         replace: true,
         require: ['slideDeck'],
         controller: ['$scope', function(scope){
+            var self = this;
             this.index = 0;
             this.images = [];
-            
-            var self = this;
             
             this.update = function(direction){
                 var current = self.images[ self.index ];
@@ -62,6 +61,9 @@ app.directive('slideDeck', function($timeout, $compile){
             this.back = function(elem){ self.update('back');};
             
             scope.images = this.images;
+            scope.index = this.index;
+            
+            window.slideDeck = this;
             
         }],
         link: function( scope, elem, attrs, ctrls ) {

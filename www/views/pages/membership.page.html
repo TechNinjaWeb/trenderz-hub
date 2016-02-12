@@ -1,0 +1,18 @@
+<div class="memberhip-page container z-depth-1">
+    <div class="container">
+        <div class="heading row">
+            <h3>Membership Page</h3>
+            <p class="message">Select a package that best suits your needs.</p>
+        </div>
+        <div class="packages row">
+            <div class="message col s12"></div>
+            <ul class="memberhips inline-list">
+                <li class="membership col s3" ng-repeat="level in levels">
+                    <div class="name">{{ level.name }}</div>
+                    <div class="fee">{{ level.fee }}</div>
+                    <div class="max-products">{{ level.maxProducts }}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

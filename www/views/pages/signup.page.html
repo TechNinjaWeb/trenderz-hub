@@ -1,1 +1,38 @@
-Sign Up Page
+<div class="signup container content">
+    <div class="heading row">
+        <h3 class="heading col s6">Sign Up Page </h3>
+        <div class="become-a-member col s6">
+            <button type="submit" class="membership-btn btn right" ng-click="goTo('pages.membership')">Become A Member</button>
+        </div>
+    </div>
+    <hr class="row-divider col-s12">
+    <div class="accounts row valign-wrapper">
+        <div class="create-user col s5">
+            <h4 class="create-user-heading">Buyers Account</h4>
+            <p class="create-user-body">Sign up to keep track of your shopping cart and orders</p>
+            <form method="POST" name="createAccount">
+                <input type="text" class="username" ng-model="user.username" name="username" placeholder="Username" />
+                <input type="email" class="email" ng-required ng-model="user.email" name="email" placeholder="Email" />
+                <input type="password" class="password" ng-required ng-model="user.password" name="password" placeholder="Password" />
+                <input type="password" class="password" ng-model="user.confirm" pw-check="user.password" name="confirm" placeholder="Confirm Password" />
+                <button type="submit" class="membership-btn btn col s6 offset-s3" ng-click="create( user )">Sign Up</button>
+            </form>
+        </div>
+        <div class="vertical-divider col s2">
+            <p class="vertical-center center-align">|</p>
+            <div class="msg-block" ng-show="createAccount.$error">
+              <span class="msg-error" ng-show="createAccount.user.confirm.$error.pwmatch">
+                Passwords don't match.
+              </span>
+            </div>
+        </div>
+        <div class="sign-in vertical-center col s5">
+            <h4 class="message">Already A Member?</h4>
+            <div class="login">
+                <input type="text" class="username" ng-model="data.username" name="username" placeholder="Username" />
+                <input type="password" class="password" ng-model="data.password" name="password" placeholder="Password" />
+                <button class="sign-in-btn btn col s6 offset-s3" ng-click="login( data )">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

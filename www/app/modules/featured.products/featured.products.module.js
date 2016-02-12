@@ -25,8 +25,7 @@ app.directive('featuredProducts', function(Products){
 
 app.filter('ellipses', function(){
    return function( string, limit ) {
-       if (!string || !limit) return string;
-       console.log("Substring Limit" + limit, string.substr(0, limit));
+        if (!string || !limit) return string;
         if (string.length <= limit) return string;
         else return string.substr(0, limit) + " ...";
    };
@@ -35,7 +34,6 @@ app.filter('ellipses', function(){
 app.filter('decodeText', function(){
    return function( string ) {
         if (!string) return string;
-    
         // Convert Spaces
         do { string = string.replace('%20', ' ') } while (string.search('%20') >= 0 );
         // Convert Apostrophes

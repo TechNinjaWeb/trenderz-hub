@@ -4,8 +4,19 @@ var app = angular.module('th.products', ['ui.router', 'ngResource', 'th.api']);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $stateProvider
         .state('products', {
-            abstract: true,
-            template: "<div ui-view='body'></div>"
+            views: {
+                '@': {
+                    template: "<div ui-view='body'></div>"
+                },
+                'navigation@': {
+                    templateUrl: './views/template/home.navigation.html',
+                    controller: 'navCtrl'
+                },
+                'footer@': {
+                    templateUrl: './views/template/home.footer.html',
+                    controller: 'footerCtrl'
+                }
+            }
         })
         .state('products.browse', {
             url: '/products',

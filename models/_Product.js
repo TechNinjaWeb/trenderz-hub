@@ -16,7 +16,9 @@ var Product = new Schema({
    belongsTo: {
        type: mongo.Schema.Types.ObjectId,
        ref: 'Store'
-   }
+   },
+   remoteImages: [String],
+   localImages: [String]
 });
 
 module.exports = mongo.model('Product', Product);

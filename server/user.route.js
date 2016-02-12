@@ -33,11 +33,11 @@ module.exports = {
         var user, newUser;
         try {
             if (req.query.user) user = JSON.parse(req.query.user);
+            else if (!req.query.user && req.body.hasOwnProperty('password')) user = req.body;
             else user = null;
         } catch (e) {
             user = null;
         } finally {
-            console.log("Save This User:", user);
             if (user) newUser = new User( user );
         }
         // Sanitize The Ref
@@ -45,9 +45,9 @@ module.exports = {
         // Add Basic User Role
         newUser.roles.push('Registered');
         
-        console.log("User After Sanitize", user);
+        // console.log("User After Sanitize", user);
         newUser.save(function(err, response) {
-           console.log("Saved User:", response);
+        //   console.log("Saved User:", response);
            if (err) return res.status(200).json({error: err, response: response});
            res.status(200).json(newUser);
         });

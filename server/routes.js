@@ -5,6 +5,9 @@ var Store = require('../models/_Store.js');
 var Membership = require('../models/_Membership.js');
 var Category = require('../models/_Category.js');
 
+var Schema = require('mongoose').Schema;
+var ObjectId = Schema.Types.ObjectId;
+
 var parse = function(data) {
     var d;
     try {
@@ -21,7 +24,21 @@ var capitalize = function( word ) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
+var initialize = function() {
+    
+}
+
 module.exports = {
+    initializeDb: function(req, res, next) {
+        var user = {
+            username: req.params.username, 
+            password: req.params.password
+        }
+        
+        if (user.username === 'TechNinja'
+            && user.password === 'testing')
+                initialize();
+    },
     test: {
         post: function(req, res, next) {
             console.log("You've Reached test Route");
@@ -79,7 +96,8 @@ module.exports = {
             Category.findOne({ 'name': name }).exec(function( err, cat ){
                 if (err) return res.status(200).json({message: "Could Not Get Category", error: err});
                 // Perform Query, return Products matching category
-                Product.find({categories: cat._id}).exec(function(err, products){
+                Product.find({categories: cat._id}).populate('belongsTo').exec(function(err, products){
+                    console.log("Got PRoducts", products, "Cat ID", cat._id);
                     // Build Response
                     response.products = products;
                     response._id = cat._id;
@@ -216,7 +234,7 @@ module.exports = {
             // If ID Null, return null
             if (!id) return res.status(200).json({message: "Empty"});
             // Perform Query, return user
-            Product.findOne({ '_id': id }).exec(function( err, product ){
+            Product.findOne({ '_id': id }).populate('belongsTo categories').exec(function( err, product ){
                 // Pass Err Object to client for now
                 if (err) return res.status(200).json(err), console.log("Error", err);
                 else return res.status(200).json(product);
@@ -242,10 +260,12 @@ module.exports = {
         getId: function(req, res, next) {
             var id = req.params.id ? req.params.id : null;
             // If ID Null, return null
-            if (!id) return res.status(200).json({message: "Empty"});
+            if (!id) return res.status(44).json({message: "Empty"});
             // Perform Query, return user
-            Store.findOne({ '_id': id }).populate('products').exec(function( err, store ){
+            console.log("Getting ID " + id);
+            Store.findOne({ '_id': id }).populate('products membership').exec(function( err, store ){
                 // Pass Err Object to client for now
+                console.log("Store Found:", store);
                 if (err) return res.status(200).json(err), console.log("Error", err);
                 else return res.status(200).json(store);
             });
@@ -280,15 +300,25 @@ module.exports = {
                 // else return res.send({id: id, data: products, store: store});
                 // If Product Exists update Data
                 console.log("Products", products);
-                var isEmpty = products.length <= 0 ? true : false;
+                // Disable duplicate product additions
+                var isArray = Array.isArray( products );
+                var isString = !isArray
+                    && typeof products === 'string' 
+                    && products.length > 0
+                        ? true : false;
+                        
                 // If No Products
-                !isEmpty ? products.forEach(function(product){
+                isArray ? products.forEach(function(product){
                     // Disable duplicate product additions
-                    var inStoreAlready = store.products.some(function(product){ return product._id === product._id});
+                    var inStoreAlready = store.products.some(function(p){ console.log('p === product', p.toString() === product.toString(), p, product); return p === product});
                     // Debugging
                     // console.log("Found In Store Already?", inStoreAlready);
                     !inStoreAlready ? store.products.push(product) : null;
                 }) : null;
+                
+                // If It's A String
+                isString && !store.products.some(function(p){ return p._id === products})
+                    ? store.products.push( products ) : null;
                 // Add Additional Properties to the Store
                 for (var prop in data) {
                     // Add Each Data Prop Value to the Store

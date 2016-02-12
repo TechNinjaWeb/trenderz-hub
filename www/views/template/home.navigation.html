@@ -1,12 +1,14 @@
 <div class="navbar-fixed">
    <nav>
       <div class="nav-wrapper">
-         <a ui-sref="home.index" class="brand-logo"><img src="http://trenderzhub.ca/skin/frontend/base/default/images/trenderz.png" alt="none">
+         <a ui-sref="home.index" class="brand-logo"><img src="./images/trenderzhub/Trenderz-Hub-Logo.svg" alt="Shop Local.">
+         <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span></span>
          </a>
          <ul class="right hide-on-med-and-down">
             <li ng-class="{active:link.active}" ng-repeat="link in links"><a href ng-click="goTo(link.sref, link)">{{ link.title }}</a></li>
             <li class="vertical-divider"> | </li>
-            <li><a href></a>Account</li>
+            <li ng-if="loggedIn"><a href ng-click="goTo('auth.account')">Account</a></li>
+            <li ng-if="!loggedIn"><a href ng-click="goTo('pages.signup')">Sign Up</a></li>
          </ul>
       </div>
    </nav>
