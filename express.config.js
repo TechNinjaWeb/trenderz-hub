@@ -33,7 +33,7 @@ app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use('/scripts', express.static(__dirname + '/bower_components'));
 app.use('/css', express.static(__dirname + '/bower_components'));
 app.use('/font', express.static(__dirname + '/bower_components'));
-app.use('/imags', express.static(__dirname + '/www/images'));
+app.use('/images', express.static(__dirname + '/www/images'));
 
 app.use(sessions({
     cookieName: 'THCookie', // cookie name dictates the key name added to the request object 
@@ -42,6 +42,13 @@ app.use(sessions({
     activeDuration: 1000 * 60 * 5 // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds 
 }));
 
+app.use(function headers(req, res, next){
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Content-Type', 'application/json');
+    res.set('Allow-Origin', 'trenderzhub-techninja.c9users.io');
+    
+    next();
+});
 
 // app.use(function(req, res, next) {
 //     if (true) console.log("It's true", req.THCookie);

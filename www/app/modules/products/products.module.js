@@ -6,7 +6,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
         .state('products', {
             views: {
                 '@': {
-                    template: "<div ui-view='body'></div>"
+                    template: "<div ui-view='body' class='animation'></div>"
                 },
                 'navigation@': {
                     templateUrl: './app/views/template/home.navigation.html',

@@ -1,5 +1,18 @@
 var app = angular.module('th.api', []);
 
+app.run(function($rootScope, $http, $location){
+// Set Default Headers
+  var headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': $location.path
+       
+  }
+   
+  for (var header in headers) {
+      $http.defaults.headers[ header ] = headers[ header ];
+  }
+});
+
 app.service('Stores', ['$resource', function($resource) {
     return window.resource = $resource('https://trenderzhub-techninja.c9users.io/Stores/:id', {id: '@id'}, 
     {

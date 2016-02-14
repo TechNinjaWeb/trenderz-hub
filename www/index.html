@@ -14,11 +14,12 @@
     <link rel="shortcut icon" type="image/png" href="images/trenderzhub/favicon.ico"/>
   </head>
 
-  <body ng-controller="appCtrl">
+  <body ng-controller="appCtrl" class="subtle-pattern">
     <!--Primary Navigation-->
     <div ui-view="navigation"></div>
     <!--Primary View-->
-    <div ui-view=""></div>
+    <a id="topAnchor" class="top-anchor"></a>
+    <div ui-view="" ng-cloak class="animation"></div>
     <!--Primary Footer-->
     <div ui-view="footer"></div>
     <!--Prototypes-->
@@ -26,6 +27,7 @@
     <!--Required Includes-->
     <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script data-require="angular.js@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular.js"></script>
+    <script data-require="angular-animate@*" data-semver="1.4.8" type="application/javascript" src="/scripts/angular-animate/angular-animate.js"></script>
     <script data-require="materialize@*" data-semver="0.97.5" src="scripts/Materialize/dist/js/materialize.js"></script>
     <script data-require="ui-router@*" data-semver="0.2.15" src="https://cdn.rawgit.com/angular-ui/ui-router/805e69bae319e922e4d3265b7ef565058aaff850/release/angular-ui-router.js"></script>
     <script data-require="angular-resource@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular-resource.js"></script>
@@ -34,17 +36,23 @@
     <!--Toastr User Notifications-->
     <script type="application/javascript" src="/scripts/toastr/toastr.js"></script>
     <script type="application/javascript" src="/modules/toastr.console.js"></script>
+    <!--Slide Deck Slider-->
+    <script type="application/javascript" src="http://www.bchanx.com/static/dist/js/lib/slidr.min.js"></script>
     <!--HTML Editor Plugin-->
     <script type="application/javascript" src="//cdn.ckeditor.com/4.5.7/full/ckeditor.js"></script>
+    <!--TESTING SCRIPTS-->
+    <script type="application/javascript" src="http://tympanus.net/Blueprints/HorizontalDropDownMenu/js/cbpHorizontalMenu.min.js"></script>
     <!--App Files-->
     <script src="/app/app.js"></script>
     <script type="application/javascript" src="./app/modules/api/api.factory.js"></script>
+    <script type="application/javascript" src="./app/modules/cache.service/cache.service.js"></script>
     <script type="application/javascript" src="./app/modules/stores/stores.module.js"></script>
     <script type="application/javascript" src="./app/modules/stores/slide.deck.directive.js"></script>
     <script type="application/javascript" src="./app/modules/products/products.module.js"></script>
     <script type="application/javascript" src="./app/modules/featured.products/featured.products.module.js"></script>
     <script type="application/javascript" src="./app/modules/admin/admin.module.js"></script>
     <script type="application/javascript" src="./app/modules/account/account.module.js"></script>
+    <script type="application/javascript" src="./app/modules/shopping.cart/shopping.cart.module.js"></script>
   </body>
 
 </html>

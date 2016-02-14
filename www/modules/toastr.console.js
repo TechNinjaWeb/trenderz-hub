@@ -1,4 +1,7 @@
 (function(toastr){
+	// Toastr Settings
+	toastr.options.escapeHtml = true;
+	toastr.options.preventDuplicates = true;
 	// Define Toastr
 	toastr.messages = [];
 	toastr.messages.add = function( type, data ) { toastr.messages.push( {arguments: data, time: new Date( Date() ).getTime(), type: type } ); };

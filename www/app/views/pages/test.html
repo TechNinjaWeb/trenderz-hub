@@ -1,0 +1,22 @@
+<div class="test-page">
+    
+</div>
+<script type="text/javascript">
+    $(function(){
+        var width;
+        width = window.document.body.offsetWidth;
+        var testPage = $('.test-page').get(0);
+        // Template Construction If Test Page Unused
+        if (testPage.innerText) return testPage.classList.add('container');
+        var img = $("<img alt='under-construction' src='images/trenderzhub/trenderz-construction-banner.jpg' />")
+            .css('width', width)
+            .css('min-width', '300px');
+        // Add Test Img To Window
+        $(testPage).append( img );
+        // Listen For Resize
+        $(window).on('resize', function(e){
+            width = window.document.body.offsetWidth;
+            img.css('width', width);
+        });
+    }());
+</script>

@@ -1,12 +1,14 @@
 var app = angular.module('th', [
     'ngResource',
+    'ngAnimate',
     'ui.router',
     'th.api',
     'th.stores',
     'th.products',
     'th.FeaturedProducts',
     'th.admin',
-    'th.account'
+    'th.account',
+    'th.shopping.cart'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -15,7 +17,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             abstract: true,
             views: {
                 '@': {
-                    template: "<div ui-view='body'></div>"
+                    template: "<div ui-view='body' class='animation'></div>"
                 },
                 'navigation@': {
                     templateUrl: './app/views/template/home.navigation.html',
@@ -39,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             abstract: true,
             views: {
                 '@': {
-                    template: "<div ui-view='body'></div>"
+                    template: "<div ui-view='body' class='animation'></div>"
                 },
                 'navigation@': {
                     templateUrl: './app/views/template/home.navigation.html',
@@ -90,7 +92,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             abstract: true,
             views: {
                 '@': {
-                    template: "<div ui-view='body'></div>"
+                    template: "<div ui-view='body' class='animation'></div>"
                 },
                 'navigation@': {
                     templateUrl: './app/views/template/home.navigation.html',
@@ -117,15 +119,47 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                     templateUrl: './app/views/pages/privacy.policy.html'
                 }
             }
-        });
+        })
+        .state('test', {
+            abstract: true,
+            views: {
+                '@': {
+                    template: "<div ui-view='body' class='animation'></div>"
+                },
+                'navigation@': {
+                    templateUrl: './app/views/template/home.navigation.html',
+                    controller: 'footerCtrl'
+                },
+                'footer@': {
+                    templateUrl: './app/views/template/home.footer.html',
+                    controller: 'footerCtrl'
+                }
+            }
+        })
+        .state('test.index', {
+            url: '/test',
+            views: {
+                'body@test': {
+                    templateUrl: './app/views/pages/test.html'
+                }
+            }
+        });;
 
     $urlRouterProvider.otherwise('/');
     // $locationProvider.html5Mode(true);
 
 });
 
-app.run(['$rootScope', '$state', '$stateParams', function($rootScope, state, params) {
+app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($rootScope, state, params, $location, $anchorScroll, $timeout) {
+    // Default Store Info
+    $rootScope.trenderzhub = {};
+    $rootScope.trenderzhub.name = "Trenderz Hub";
+    $rootScope.trenderzhub.email = "trenderzhub@gmail.com";
+    $rootScope.trenderzhub.address = "123 Fake Street Edmonton Ab, T5S 6S6";
+
+    // Primary Functions    
     $rootScope.goTo = function(statename, data, params) {
+        console.log("Called In Main App", arguments);
         if (!statename) return;
         // Set ID on params object
         if (data && data._id) params.id = data._id;
@@ -137,6 +171,15 @@ app.run(['$rootScope', '$state', '$stateParams', function($rootScope, state, par
         // Response
         console.log("Moving To State", statename, params);
     };
+    
+    // Auto Scroll To Top or Param Position
+    $anchorScroll.yOffset = 100;
+    $rootScope.$on('$stateChangeSuccess', function(newRoute, oldRoute) {
+        $location.hash(params.scrollTo);
+        $anchorScroll("topAnchor");
+    });
+    // Window Factory
+    window.anchorScroll = $anchorScroll;
 }]);
 
 app.controller('appCtrl', ['$scope', '$state', '$stateParams', function(scope, state, params) {

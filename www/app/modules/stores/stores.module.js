@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             abstract: true,
             views: {
                 '@': {
-                    template: "<div ui-view='body'></div>"
+                    template: "<div ui-view='body' class='animation'></div>"
                 },
                 'navigation@': {
                     templateUrl: './app/views/template/home.navigation.html',
@@ -59,7 +59,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
             views: {
                 'body@stores': {
                     templateUrl: './app/modules/stores/views/pages/stores.category.html',
-                    controller: "storeCategoryController",
+                    controller: "storeCategoryCtrl",
                     resolve: {
                         Categories: 'Categories',
                         category: function( Categories, $stateParams ) {
@@ -78,14 +78,14 @@ app.controller('storesCtrl', ['$scope', 'stores', '$stateParams', function( scop
 }]);
 
 app.controller('storeDetailCtrl', ['$scope', 'store', '$stateParams', function( scope, store, params ){
-    console.log("Get Params ID?", params.id);
+    // console.log("Get Params ID?", params.id);
 
     scope.store = store;
     
 }]);
 
-app.controller('storeCategoryController', ['$scope', 'category', '$stateParams', function( scope, category, params ){
-    console.warn("Got Categories Resolve", category);
+app.controller('storeCategoryCtrl', ['$scope', 'category', '$stateParams', function( scope, category, params ){
+    // console.warn("Got Categories Resolve", category);
   
     scope.category = category;
     

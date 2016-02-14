@@ -1,7 +1,38 @@
-<div class="content product container">
-    <div class="name">{{ product.name }}</div>
-    <div class="price">{{ product.price }}</div>
-    <div class="qty">{{ product.qty }}</div>
-    <div class="description">{{ product.description  | decodeText  }}</div>
-    <button class="btn products-store-btn" ng-click="goTo('stores.detail', product.belongsTo)">See More From This Store</button>
+<div class="content product-detail container">
+    <div class="content-wrapper card">
+        <div class="row left-nav hide-on-small-only">
+            <div class="s6 see-more-from-this-store">
+                <button class="see-more-btn btn">More In Store</button>
+            </div>
+        </div>
+        <div class="header row">
+            <div class="col s12 m6 l6 image-container">
+                <div class="primary col s12"><img src="./images/trenderzhub/trenderz-construction-banner.jpg" alt=""></div>
+                <div class="gallery col s12 hide-on-small-only">
+                    <ul class="list-inline images">
+                        <li class="image center-align col m3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                        <li class="image center-align col m3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                        <li class="image center-align col m3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                        <li class="image center-align col m3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m6 l6 info-container container right-align">
+                <h3 class="title col s12">{{ product.name }}</h3>
+                <div class="price col s12">$ {{ product.price }}</div>
+                <div class="price col s12">Qty: {{ product.qty }}</div>
+                <button class="add-to-cart col s3 offset-s9" ng-click="addProduct( product )">Add</button>
+                <ul class="social inline-list right col m12">
+                    <li class="-container col s3" ng-repeat="image in product.localImages"><img ng-src="{ image }" src="./images/trenderzhub/favicon.ico" alt=""></li>
+                    <li class="-container col s3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                    <li class="-container col s3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                    <li class="-container col s3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                    <li class="-container col s3"><img src="./images/trenderzhub/favicon.ico" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="horizontal-divider">
+        <div class="description col s12">{{ product.description | decodeText }}</div>
+    </div>
+
 </div>

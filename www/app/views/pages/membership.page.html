@@ -1,3 +1,76 @@
+<style type="text/css">
+    
+    .panel {
+        margin-bottom: 20px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        box-shadow: none;
+        border-radius: 4px;
+        border-color: #83c5a0;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    
+    .panel-heading h3 {
+        margin-top: 0;
+        font-size: 30px;
+        color: #fff;
+        background-color: #83c5a0;
+        border-color: #83c5a0;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        padding: 5% 0;
+    }
+    
+    .panel-heading h3 {
+        text-shadow: 1px 1px 1px black;
+        position: relative;
+        z-index: 1;
+        margin-top: 0;
+        margin-bottom: 0;
+        color: white;
+        width: 100%;
+    }
+    
+    .panel-heading:before {
+        position: absolute;
+        z-index: -1;
+        bottom: 4px;
+        height: 18px;
+        background: url("https://asmallorange.com/assets/img/services/shared-slice.png") center center no-repeat;
+        background-size: 24px 16px;
+        right: 25px;
+    }
+    
+    .panel-body, .panel-footer {
+        padding: 15px;
+    }
+    .shared-list {
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    
+    .item {
+        position: relative;
+        display: block;
+        background-color: #fff;
+        border-top: 1px solid #e5efca;
+        border-bottom: 1px solid #e5efca;
+        margin: 0;
+        border-width: 1px 0;
+        border-radius: 0;
+    }
+    
+    .membership-page button.add-to-cart {
+        margin-bottom: 20px;
+    }
+    
+    .memberhips li:nth-child(3) {
+        margin-top: -20px;
+    }
+    
+</style>
 <div class="memberhip-page container z-depth-1">
     <div class="container">
         <div class="heading row">
@@ -7,10 +80,21 @@
         <div class="packages row">
             <div class="message col s12"></div>
             <ul class="memberhips inline-list">
-                <li class="membership col s3" ng-repeat="level in levels">
-                    <div class="name">{{ level.name }}</div>
-                    <div class="fee">Fee: {{ level.fee }}</div>
-                    <div class="max-products">#of Products: {{ level.maxProducts }}</div>
+                <li class="membership col s12 m3" ng-repeat="level in levels">
+                    <div class="panel center-align">
+                        <div class="panel-heading">
+                            <h3 class="name">{{ level.name }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="fee">Fee: {{ level.fee }}</div>
+                        </div>
+                        <ul class="shared-list">
+                            <li class="item max-products">Max Listings: {{ level.maxProducts }}</li>
+                        </ul>
+                        <div class="panel-footer">
+                            <button class="add-to-cart btn">Add</button>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

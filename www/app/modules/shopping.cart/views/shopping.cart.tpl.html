@@ -1,0 +1,9 @@
+<div class="shopping-cart-container hidden">
+    <ul class="shopping-cart card inline-list">
+        <li class="icon"><i class="material-icons">shopping_cart</i></li>
+        <li class="info">
+            <strong>Cart: </strong><span class="count">{{ cart.products.length }}</span>
+        </li>
+    </ul>
+    <button class="view-cart-btn btn hidden" ng-click="goTo('shopping.cart')">View Cart</button>
+</div>

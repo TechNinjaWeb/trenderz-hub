@@ -1,0 +1,48 @@
+<div class="shopping-cart-page">
+    <div ng-if="cart.products.length > 0" class="cart-container container">
+        <h3 class="title">Shopping Cart</h3>
+        <hr class="row-divider">
+        <ul class="cart collection">
+            <li class="collection-item row valign-wrapper" ng-repeat="item in cart.products | groupProducts">
+                <div class="qty-container col s1 center-align">{{ item | getQty:cart.products }}
+                    <br>
+                    <div class="qty-text">in cart</div>
+                </div>
+                <div class="info col s10">
+                    <h5 class="title">{{ item.name }}</h5>
+                    <p class="body truncate">{{ item.description | decodeText }}</p>
+                    <div class="price">{{ item.price }}</div>
+                </div>
+                <a href class="secondary-content col s1" ng-click="removeProduct( null, item )"><i class="material-icons medium">delete</i></a>
+            </li>
+        </ul>
+        <ul class="total-container collection">
+            <li class="total-item collection-item row valign-wrapper">
+                <div class="qty-container col s1 center-align">{{ cart.products.length }}
+                    <br>
+                    <div class="qty-text">in cart</div>
+                </div>
+                <div class="info col s10">
+                        <div class="info col s10">
+                        <h5 class="title">Price:</h5>
+                        <p class="body">${{ cart.getPrice() }}</p>
+                    </div>
+                </div>
+                <a href class="secondary-content col s1" ng-click="">
+                    <i class="material-icons medium">credit_card</i>
+                    <br>
+                    Checkout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container message" ng-if="cart.products.length <= 0">
+        <h3 class="title">Shopping Cart</h3>
+        <hr class="row-divider">
+        <p class="heading">
+            There are no products in your cart.
+        </p>
+        <button class="continue-shopping btn btn-large" ng-click="goTo('stores.browse')">Continue Shopping</button>
+        
+    </div>
+</div>
