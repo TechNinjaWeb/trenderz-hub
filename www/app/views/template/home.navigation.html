@@ -7,7 +7,7 @@
          <ul class="right hide-on-med-and-down">
             <li ng-class="{active:link.active}" ng-repeat="link in links"><a href ng-click="goTo(link.sref, link)">{{ link.title }}</a></li>
             <li class="vertical-divider"> | </li>
-            <li ng-if="loggedIn"><a href ng-click="goTo('auth.account')">Account</a></li>
+            <li ng-if="loggedIn"><a href ng-click="goTo('account.page')">Account</a></li>
             <li ng-if="!loggedIn"><a href ng-click="goTo('pages.signup')">Sign Up</a></li>
          </ul>
       </div>

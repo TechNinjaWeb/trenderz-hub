@@ -55,6 +55,9 @@ module.exports = function( app ) {
     app.route('/register')
         .post(routes.users.post);
         
+    app.route('/login')
+        .get(routes.users.login);
+        
     // app.route('/Install/:username/:password')
     //     .get(routes.initializeDb);
         

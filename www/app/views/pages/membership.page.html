@@ -1,5 +1,10 @@
 <style type="text/css">
     
+    @media (min-width: 768px) { /* TARGET PHONE ONLY */
+        .memberhips li:nth-child(3) {
+            margin-top: -20px;
+        }
+    }
     .panel {
         margin-bottom: 20px;
         background-color: #fff;
@@ -48,16 +53,16 @@
     }
     .shared-list {
         padding-top: 10px;
-        padding-bottom: 20px;
+        /*padding-bottom: 20px;*/
     }
     
     .item {
         position: relative;
         display: block;
         background-color: #fff;
-        border-top: 1px solid #e5efca;
+        /*border-top: 1px solid #e5efca;*/
         border-bottom: 1px solid #e5efca;
-        margin: 0;
+        margin-bottom: 8px;
         border-width: 1px 0;
         border-radius: 0;
     }
@@ -66,37 +71,50 @@
         margin-bottom: 20px;
     }
     
-    .memberhips li:nth-child(3) {
-        margin-top: -20px;
+    .membership.card {
+        padding: 20px 60px;
+    }
+    
+    .wrapper.container {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+    
+    .panel-body .price {
+        font-size: 20px;
     }
     
 </style>
-<div class="memberhip-page container z-depth-1">
-    <div class="container">
-        <div class="heading row">
-            <h3>Membership Page</h3>
-            <p class="message">Select a package that best suits your needs.</p>
-        </div>
-        <div class="packages row">
-            <div class="message col s12"></div>
-            <ul class="memberhips inline-list">
-                <li class="membership col s12 m3" ng-repeat="level in levels">
-                    <div class="panel center-align">
-                        <div class="panel-heading">
-                            <h3 class="name">{{ level.name }}</h3>
+<div class="memberhip-page">
+    <div class="wrapper container">
+        <div class="membership card">
+            <div class="heading row">
+                <h3>Membership Page</h3>
+                <p class="message">Select a package that best suits your needs.</p>
+            </div>
+            <div class="packages row">
+                <div class="message col s12"></div>
+                <ul class="memberhips inline-list">
+                    <li class="membership col s12 m3 l3" ng-repeat="level in levels">
+                        <div class="panel center-align">
+                            <div class="panel-heading">
+                                <h3 class="name truncate">{{ level.name }}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <strong class="price" ng-if="level.price">${{ level.price }}</strong>
+                                <strong class="price" ng-if="!level.price">$999.99</strong>
+                            </div>
+                            <ul class="shared-list horizontal-list">
+                                <li class="item max-products">{{ level.maxProducts }} Products</li>
+                                <li class="item fee">{{ level.fee }}% Sales Fee</li>
+                            </ul>
+                            <div class="panel-footer">
+                                <button class="add-to-cart btn" ng-click="addProduct( level )">Add</button>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <div class="fee">Fee: {{ level.fee }}</div>
-                        </div>
-                        <ul class="shared-list">
-                            <li class="item max-products">Max Listings: {{ level.maxProducts }}</li>
-                        </ul>
-                        <div class="panel-footer">
-                            <button class="add-to-cart btn">Add</button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

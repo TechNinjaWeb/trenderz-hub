@@ -26,6 +26,41 @@ var app = angular.module('cache.service', [])
                 }
             }
         }
+        
+        DB.session = {};
+        DB.session.get = function getFromSession(property) {
+            var Storage;
+            if (window.sessionStorage) Storage = window.sessionStorage;
+            else window.localStorage || {};
+            
+            var data;
+            var store = Storage[property];
+            try {
+                data = JSON.parse(store);
+                if (typeof store === 'object' && store.hasOwnProperty('$$hashKey')) delete store.$$hashKey;
+            } catch (e) {
+                data = Storage[property];
+            } finally {
+                return data;
+            }
+        };
+        
+        DB.session.save = function saveToSession(property, value) {
+            var Storage;
+            if (window.sessionStorage) Storage = window.sessionStorage;
+            else window.localStorage || {};
+            
+            var data;
+            try {
+                if (typeof value === 'object' && value.hasOwnProperty('$$hashKey')) delete value.$$hashKey;
+                data = JSON.stringify(value);
+            } catch (e) {
+                data = value;
+            } finally {
+                Storage[property] = data;
+                return this.get(property);
+            }
+        };
 
         $rootScope.$on('persist', function( event, property, data ){
             DB.save(property, data);
@@ -34,5 +69,5 @@ var app = angular.module('cache.service', [])
             $rootScope.$broadcast( eventname, data );
         });
 
-        return DB;
+        return window.DB = DB;
     });

@@ -4,7 +4,11 @@ var User = require('../models/_User');
 module.exports = {
     get: function(req, res, next) {
         // This Route Only If User Has Admin Role
-        res.send("To Be Completed");
+        var query = req.query;
+        var params = req.params;
+        var body = req.body;
+        console.log(["query", query], ["params", params], ['body', body]);
+        res.json({message: "To Be Completed", response: null, err: null});
     },
     getId: function(req, res, next) {
         var id = req.params.id ? req.params.id : null;
@@ -61,5 +65,13 @@ module.exports = {
     },
     query: function(req, res, next) {
     
+    },
+    login: function( req, res, next ){
+        var query = req.query;
+        var params = req.params;
+        var body = req.body;
+        
+        console.log(["query", query], ["params", params], ['body', body]);
+        res.json({message: "Working On Login Route", response: null, err: null});
     }
 };

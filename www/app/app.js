@@ -3,6 +3,7 @@ var app = angular.module('th', [
     'ngAnimate',
     'ui.router',
     'th.api',
+    'th.user.service',
     'th.stores',
     'th.products',
     'th.FeaturedProducts',
@@ -156,6 +157,8 @@ app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '
     $rootScope.trenderzhub.name = "Trenderz Hub";
     $rootScope.trenderzhub.email = "trenderzhub@gmail.com";
     $rootScope.trenderzhub.address = "123 Fake Street Edmonton Ab, T5S 6S6";
+    
+    $rootScope.loggedIn = true;
 
     // Primary Functions    
     $rootScope.goTo = function(statename, data, params) {
@@ -182,7 +185,9 @@ app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '
     window.anchorScroll = $anchorScroll;
 }]);
 
-app.controller('appCtrl', ['$scope', '$state', '$stateParams', function(scope, state, params) {
+app.controller('appCtrl', ['$scope', '$state', '$stateParams', 'User', function(scope, state, params, User) {
+    scope.User = User.get() || {};
+    
     scope.test = function(data) {
         console.log("Testing", arguments);
     };

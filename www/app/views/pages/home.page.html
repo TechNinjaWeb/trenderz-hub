@@ -1,20 +1,113 @@
-<div class="home-page">
-   <div class="parallax-container main-banner">
-      <div class="section no-pad-bot">
-         <div class="header container">
-            <h1 class="header center teal-text text-lighten-2">Welcome To Trenderz Hub</h1>
-            <div class="row center">
-               <h5 class="header col s12 light">Local Goods From Local Shops.</h5>
-            </div>
-            <div class="sign-up-container row center">
-               <h6 class="call-to-action">We are accepting requests for beta Store Owners</h6>
-               <a id="signup-button" href ng-click="goTo('pages.signup')" class="btn waves-effect waves-light orange lighten3">Sign Up Today</a>
-            </div>
+<style>
+   .slider .slides li .caption {
+      color: #FDF4F7;
+   }
+   .inset-text-effect {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    z-index: auto;
+    border: 0 solid rgba(0,0,0,1);
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    color: rgba(48,48,48,1);
+    text-decoration: none;
+    /*text-align: center;*/
+    text-transform: normal;
+    text-indent: 0;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    letter-spacing: normal;
+    white-space: pre;
+    word-spacing: normal;
+    word-wrap: break-word;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgb(73, 0, 90);
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+    -webkit-transform: scaleX(1) scaleY(1) scaleZ(1);
+    transform: scaleX(1) scaleY(1) scaleZ(1);
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+}
+.slider {
+   max-height: 400px;
+}
+.slider .indicators {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 6%;
+    margin: 0;
+    z-index: 2;
+}
+.home-page .featured-parallax {
+   height: 600px;
+}
+.home-page .services-block {
+   padding: 52px 26px 72px 26px;
+   min-height: 400px;
+}
 
-         </div>
-      </div>
-      <div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background1.jpg" alt="Unsplashed background img 1" style="display: block; transform: translate3d(-50%, 299px, 0px);"></div>
-   </div>
+.browse-stores .section {
+   margin-bottom: 60px;
+}
+.browse-stores .message {
+    padding: 30px 0;
+}
+.browse-stores-btn-container {
+    margin: 38px 0;
+}
+
+.home-page .message-section {
+    margin-bottom: 20px;
+}
+
+</style>
+<div class="home-page">
+   <div class="slider" slider>
+    <ul class="slides">
+        <li>
+            <img src="./images/trenderzhub/trenderz-gifts-banner.jpg"> <!-- random image -->
+            <div class="inset-text-effect caption center-align">
+                <h3 class="">This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="./images/trenderzhub/trenderz-hommade-banner.jpg"> <!-- random image -->
+            <div class="inset-text-effect caption left-align">
+                <h3>Left Aligned Caption</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+                <img src="./images/trenderzhub/trenderz-tools-banner.jpg"> <!-- random image -->
+                <div class="inset-text-effect caption right-align">
+            <h3>Right Aligned Caption</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="./images/trenderzhub/trenderz-carousel-banner.jpg"> <!-- random image -->
+            <div class="inset-text-effect caption center-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+    </ul>
+    <script>
+        $(document).ready(function(){
+            $('.slider').slider({full_width: true, interval: 7000});
+          });
+              
+    </script>
+</div>
    <div class="newsletter-offer">
       <div class="container">
          <!--   Icon Section   -->
@@ -33,40 +126,6 @@
          </div>
       </div>
    </div>
-
-   <div class="container">
-      <div class="section">
-
-         <!--   Icon Section   -->
-         <div class="row">
-            <div class="col s12 m10 offset-m1 no-pad">
-               <img class="browse-stores-image col s6 offset-s3 m6" src="./images/trenderzhub/browse-stores.png" alt="">
-               <div class="browse-stores-container col s12 m6 center-align">
-                  <h3 class="heading">Browse Stores</h3>
-                  <div class="content">
-                     Browse Stores
-                     <br>Listed on Trenderz Hub
-                  </div>
-                  <button class="btn purple darken-1" ng-click="goTo('stores.browse')">Sure!</button>
-               </div>
-            </div>
-         </div>
-
-      </div>
-   </div>
-
-
-   <div class="container">
-      <div class="section">
-         <!--<h3>Featured Products:</h3>-->
-         <!--<ul class="feature-container row">-->
-            <!--FEATURED CONTENT CONTAINER-->
-         <!--   <featured-products></featured-products>-->
-         <!--</ul>-->
-      </div>
-   </div>
-
-
    <div class="featured-parallax parallax-container valign-wrapper">
       <div class="section no-pad-bot">
          <div class="featured-content container">
@@ -79,23 +138,85 @@
       </div>
       <div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background3.jpg" alt="Unsplashed background img 2" style="display: block; transform: translate3d(-50%, 410px, 0px);"></div>
    </div>
-
-
-<div class="container">
-   <div class="section">
-
-      <div class="row">
-         <div class="col s12 center">
-            <h3><i class="mdi-content-send brown-text"></i></h3>
-            <h4>Contact Us</h4>
-            <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra
-               ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices
-               erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+   <div class="browse-stores container">
+      <div class="section">
+         <!--   Icon Section   -->
+         <div class="browse-stores-btn-container row">
+            <div class="col s12 m10 offset-m1 no-pad">
+               <img class="browse-stores-image col s6 offset-s3 m6" src="./images/trenderzhub/browse-stores.png" alt="">
+               <div class="browse-stores-container col s12 m6 center-align">
+                  <h3 class="heading">Browse Stores</h3>
+                  <div class="content inset-tex">
+                     Browse Stores
+                     <br>Listed on Trenderz Hub
+                  </div>
+                  <button class="btn purple darken-1" ng-click="goTo('stores.browse')">Sure!</button>
+               </div>
+            </div>
          </div>
       </div>
-
    </div>
-</div>
+   <div class="message-section section container">
+      <div class="message">
+            <div class="services-block row card">
+               <div class="block col s12 m4">
+                  <div class="service col s12 center-align">
+                     <i class="material-icons large">view_module</i>
+                     <div class="service body left-align">
+                        Here is some really long text about
+                        how much our company wants your business,
+                        and strives to meet all of your needs.
+                        <br><br>We are a new and upcoming brand from
+                        Edmonton, and we enjoy being a part of this
+                        Community!
+                     </div>
+                  </div>
+               </div>
+               <div class="block col s12 m4">
+                  <div class="service col s12 center-align">
+                     <i class="material-icons large">shopping_basket</i>
+                     <div class="service body left-align">
+                        Here is some really long text about
+                        how much our company wants your business,
+                        and strives to meet all of your needs.
+                        <br><br>We are a new and upcoming brand from
+                        Edmonton, and we enjoy being a part of this
+                        Community!
+                     </div>
+                  </div>
+               </div>
+               <div class="block col s12 m4">
+                  <div class="service col s12 center-align">
+                     <i class="material-icons large">receipt</i>
+                     <div class="service body left-align">
+                        Here is some really long text about
+                        how much our company wants your business,
+                        and strives to meet all of your needs.
+                        <br><br>We are a new and upcoming brand from
+                        Edmonton, and we enjoy being a part of this
+                        Community!
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </div>
+
+   <div class="container">
+      <div class="section">
+
+         <div class="row">
+            <div class="col s12 center">
+               <h3><i class="mdi-content-send brown-text"></i></h3>
+               <h4>Contact Us</h4>
+               <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id,
+                  viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac,
+                  gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+            </div>
+         </div>
+
+      </div>
+   </div>
 </div>
 
 

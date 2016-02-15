@@ -36,6 +36,10 @@ app.run(function($rootScope){
         if (!item) $rootScope.$broadcast('cart:remove', idx);
         if (!idx) $rootScope.$broadcast('cart:remove:id', item._id);
     };
+    
+    $rootScope.clearCart = function() {
+        $rootScope.$broadcast('cart:empty', true);
+    };
 });
 
 app.config(function($stateProvider){
@@ -87,8 +91,10 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
             var delay = {};
                 delay.anim = 500;
                 delay.timer = 500;
-                
-            if (Cart.hasOwnProperty('get') && Cart.get().products.length > 0) parent.removeClass('hidden');
+            
+            // Add Cart If There are products
+            if (Cart.hasOwnProperty('get') && Cart.get().products.length > 0) parent.animate().removeClass('hidden')
+                .addClass('animated fadeIn').delay(800).queue(function(next){ next(); });
             
             rootScope.$on('cart:add', function( e, item ){
                 // Hide Empty Cart
@@ -102,8 +108,9 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
               if (cart.products.length <= 0) scope.$emit('cart:empty');
            });
             
-            scope.$on('cart:empty', function(){
+            rootScope.$on('cart:empty', function(ev, bool){
                 // Hide Empty Cart
+               if (bool) Cart.clear();
                cartIsEmpty();
             });
             
@@ -142,8 +149,10 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
             });
             
             function cartIsEmpty() {
-                if (scope.cart.products.length <= 0) return parent.addClass('hidden'), true;
-                else parent.removeClass('hidden'), false;
+                if (scope.cart.products.length <= 0) return parent.animate().addClass('animated fadeOut')
+                    .delay(800).queue(function(next){ next() }), true;
+                else parent.animate().removeClass('hidden animated fadeOut')
+                    .delay(800).queue(function(next){ parent.addClass('animated fadeIn'); next() }), false;
             }
             window.parent = parent;
             window.button = button;
@@ -166,7 +175,7 @@ app.service('ShoppingCart', ['$rootScope', 'DB', function( rootScope, DB ){
     
     cart.add = function addToCart( item ) {
         // Increase Total
-        cart.total += item.price;
+        if (item.price) cart.total += item.price;
         // Add to cart
         cart.products.push( item );
         rootScope.$broadcast('persist', 'cart', cart);
@@ -176,9 +185,11 @@ app.service('ShoppingCart', ['$rootScope', 'DB', function( rootScope, DB ){
     
     cart.remove = function removeFromtCart( idx ) {
         var removed = cart.products.splice( idx, 1)[0];
+        // If nothing removed, return cart
         if (!removed || removed.length <= 0) return cart;
-        
-        cart.total -= removed.price;
+        // Validate Price
+        if (removed.price) cart.total -= removed.price;
+        // Broadcast Removal
         rootScope.$broadcast('persist', 'cart', cart);
         rootScope.$broadcast('cart:updated', cart);
         return removed;
@@ -217,6 +228,7 @@ app.service('ShoppingCart', ['$rootScope', 'DB', function( rootScope, DB ){
         if (removed === null) console.warning('Could Not Remove Item');
         else console.success('Removed ' + removed.name);
     });
+    
     
     window.rootscope = rootScope;
     return window.shoppingCart = cart;

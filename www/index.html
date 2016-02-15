@@ -16,12 +16,12 @@
 
   <body ng-controller="appCtrl" class="subtle-pattern">
     <!--Primary Navigation-->
-    <div ui-view="navigation"></div>
+    <div ui-view="navigation" class="animation"></div>
     <!--Primary View-->
     <a id="topAnchor" class="top-anchor"></a>
     <div ui-view="" ng-cloak class="animation"></div>
     <!--Primary Footer-->
-    <div ui-view="footer"></div>
+    <div ui-view="footer" class="animation"></div>
     <!--Prototypes-->
     <script src="/app/prototypes.js"></script>
     <!--Required Includes-->
@@ -45,6 +45,8 @@
     <!--App Files-->
     <script src="/app/app.js"></script>
     <script type="application/javascript" src="./app/modules/api/api.factory.js"></script>
+    <script type="application/javascript" src="./app/modules/user.service/user.service.js"></script>
+    <script type="application/javascript" src="./app/modules/user.service/login.service.js"></script>
     <script type="application/javascript" src="./app/modules/cache.service/cache.service.js"></script>
     <script type="application/javascript" src="./app/modules/stores/stores.module.js"></script>
     <script type="application/javascript" src="./app/modules/stores/slide.deck.directive.js"></script>

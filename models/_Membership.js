@@ -9,6 +9,7 @@ var Membership = new Schema({
        unique: true
    },
    maxProducts: Number,
+   price: Number,
    fee: Number,
    days: Number
 });

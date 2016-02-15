@@ -56,14 +56,3 @@ app.service('Memberships', ['$resource', function($resource) {
         }
     });
 }]);
-
-app.service('Users', ['$resource', function($resource) {
-    return window.resource = $resource('https://trenderzhub-techninja.c9users.io/Users/:id', {name: '@id'}, 
-    {
-        getId: {
-            method: 'GET',
-            isArray: true,
-            name: '@id'
-        }
-    });
-}]);

@@ -55,7 +55,7 @@ module.exports = {
         res.status(200).json({query: req.query, body: req.body, params: req.params});
     },
     // Really Important Routes Start Here
-    users: { get: User.get, post: User.post, getId: User.getId, getUser: User.getUser },
+    users: { get: User.get, post: User.post, getId: User.getId, getUser: User.getUser, login: User.login },
     categories: {
         get: function(req, res, next){
             Category.find({}).exec(function(err, categories){

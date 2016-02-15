@@ -35,6 +35,9 @@
                 </a>
             </li>
         </ul>
+        <div class="clear-cart">
+            <button class="clear-cart-btn btn right" ng-click="clearCart()">Clear Cart</button>
+        </div>
     </div>
     <div class="container message" ng-if="cart.products.length <= 0">
         <h3 class="title">Shopping Cart</h3>
@@ -43,6 +46,5 @@
             There are no products in your cart.
         </p>
         <button class="continue-shopping btn btn-large" ng-click="goTo('stores.browse')">Continue Shopping</button>
-        
     </div>
 </div>
