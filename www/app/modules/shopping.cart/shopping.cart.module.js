@@ -93,10 +93,9 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
                 delay.timer = 500;
             
             // Add Cart If There are products
-            if (Cart.hasOwnProperty('get') && Cart.get().products.length > 0) parent.animate().removeClass('hidden')
-                .addClass('animated fadeIn').delay(800).queue(function(next){ next(); });
+            if (Cart.hasOwnProperty('get') && Cart.get().products.length > 0) cartIsEmpty();
             
-            rootScope.$on('cart:add', function( e, item ){
+            scope.$on('cart:add', function( e, item ){
                 // Hide Empty Cart
                 console.log("Cart Added", e, item);
                 cartIsEmpty();
@@ -149,10 +148,8 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
             });
             
             function cartIsEmpty() {
-                if (scope.cart.products.length <= 0) return parent.animate().addClass('animated fadeOut')
-                    .delay(800).queue(function(next){ next() }), true;
-                else parent.animate().removeClass('hidden animated fadeOut')
-                    .delay(800).queue(function(next){ parent.addClass('animated fadeIn'); next() }), false;
+                if (scope.cart.products.length <= 0) return parent.removeClass('animated fadeIn').addClass('animated fadeOut'), true;
+                else parent.removeClass('hidden animated fadeOut').addClass('animated fadeIn'), false;
             }
             window.parent = parent;
             window.button = button;
@@ -215,18 +212,18 @@ app.service('ShoppingCart', ['$rootScope', 'DB', function( rootScope, DB ){
     rootScope.$on('cart:add', function( e, item ){
         console.warn("Adding", item, cart);
         cart.add( item );
-        console.alert('Added ' + item.name);
+        console.success('Added ' + item.name);
     });
     
     rootScope.$on('cart:remove', function( e, idx ){
         var item = cart.remove( idx );
-        console.warning('Removed ' + item.name);
+        console.alert('Removed ' + item.name);
     });
     
     rootScope.$on('cart:remove:id', function( e, id ){
         var removed = cart.removeId( id ) || null;
         if (removed === null) console.warning('Could Not Remove Item');
-        else console.success('Removed ' + removed.name);
+        else console.warning('Removed ' + removed.name);
     });
     
     
