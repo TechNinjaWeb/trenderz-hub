@@ -151,14 +151,24 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 });
 
-app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', function($rootScope, state, params, $location, $anchorScroll, $timeout) {
+app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '$timeout', 'User', function($rootScope, state, params, $location, $anchorScroll, $timeout, User) {
     // Default Store Info
     $rootScope.trenderzhub = {};
     $rootScope.trenderzhub.name = "Trenderz Hub";
     $rootScope.trenderzhub.email = "trenderzhub@gmail.com";
     $rootScope.trenderzhub.address = "123 Fake Street Edmonton Ab, T5S 6S6";
     
+    $rootScope.user = User.get() || {};
     $rootScope.loggedIn = true;
+    // Set User Upon Login
+    // $rootScope.$on('user:loggedIn', function(ev, user){ $rootScope.$apply(function(){ $rootScope.user = user; }); state.go('account.page'); });
+    // $rootScope.$on('user:loggedOut', function(ev, user){ $rootScope.$apply(function(){ $rootScope.user = {}; }); state.go('home.index'); });
+    
+    $rootScope.$on('user:loggedIn', function(ev, user){ $rootScope.user = user;state.go('account.page'); });
+    $rootScope.$on('user:loggedOut', function(ev, user){  $rootScope.user = {}; state.go('home.index'); });
+    // Login and Out
+    $rootScope.login = User.login;
+    $rootScope.logout = User.logout;
 
     // Primary Functions    
     $rootScope.goTo = function(statename, data, params) {
@@ -266,6 +276,7 @@ app.controller('signupCtrl', ['$scope', 'Users', function(scope, Users) {
     
     scope.login = function( user )  {
         console.log("Login User", user);
+        scope.$emit('user:login', user);
     };
 }]);
 

@@ -2,8 +2,7 @@ var app = angular.module('th.login.service', []);
 
 app.service('LoginService', ['$rootScope', 'LoginResource', function( rootScope, resource ){
     var Login = {};
-    
-    
+    // Login Function
     Login.login = function( data ) {
         var user = resource.get( data ).$promise;
         return new Promise(function(res, rej){
@@ -16,9 +15,11 @@ app.service('LoginService', ['$rootScope', 'LoginResource', function( rootScope,
             user.then(function( u ){ return u.error || u.err || u.message ? rej( u ) : res( u); });
         });
     };
-    
-    rootScope.$on('user:loggedIn', function(){ return "TBA" });
-    
+    Login.logout = function() {
+        return new Promise(function(res, rej){
+            res( {message: "Not Implemented Yet Ln: 19 of Login.Service.js" } );
+        });
+    };
     return Login;
 }])
 
