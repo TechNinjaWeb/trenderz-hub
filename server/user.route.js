@@ -72,6 +72,12 @@ module.exports = {
         var body = req.body;
         
         console.log(["query", query], ["params", params], ['body', body]);
-        res.json({message: "Working On Login Route", response: null, err: null});
+        // res.json({message: "Working On Login Route", response: null, err: null});
+        
+        User.findOne( query ).exec(function( err, found ){
+            if (err) return res.json({err: err});
+            console.log("Found:", found);
+            res.status(200).json(found);
+        })
     }
 };

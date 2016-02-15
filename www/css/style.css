@@ -132,6 +132,7 @@ li.vertical-divider:before {
 }
 
 
+
 /* 
     Home Page Styles 
 */
@@ -166,6 +167,29 @@ li.vertical-divider:before {
 
 .call-to-action {
     margin-bottom: 20px;
+}
+
+.action-box {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.action-box .content-wrapper {
+    box-shadow: 1px 1px 5px rgba(90, 69, 69, 0.28);
+}
+
+.action-box .image img {
+    margin-top: 20px;
+    max-width: 200px;
+}
+
+.action-box .meassage {
+    padding: 20px;
+    text-align: center;
+}
+
+.action-box .message .heading {
+    font-size: 26px;
 }
 
 .browse-stores-container {

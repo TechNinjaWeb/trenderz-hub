@@ -6,4 +6,19 @@
         </div>
     </div>
     <hr class="row-divider">
+    <div class="body row">
+        <div class="user-info col s6">
+            <div class="username">Username:{{ user.username }}</div>
+            <div class="email">Email:{{ user.email }}</div>
+            <div class="roles">Roles:{{ user.roles }}</div>
+        </div>
+    </div>
+    <hr class="horizontal-divider">
+    <div class="order-history">
+        <button class="order-history-btn btn blue lighten4" ng-click="goTo('account.orders')">View Orders</button>
+    </div>
+    <div class="order-search">
+        <h5 class="order-search-title">Search For An Order</h5>
+        <button class="advanced-search-btn btn green lighten4" ng-click="goTo('pages.advanced.search')">Advanced Search</button>
+    </div>
 </div>

@@ -4,7 +4,7 @@ app.service('User', ['$rootScope', '$resource', 'DB', 'LoginService', function( 
     var User = { active: false };
     var Session = DB.session.get() || {};
     // Define User
-    User.data = DB.get('user') || {};
+    User.data = DB.session.get('User') || {};
     if (User.data.hasOwnProperty('username')) User.active = true;
     else User.active = false;
     // Set User Data
@@ -26,6 +26,8 @@ app.service('User', ['$rootScope', '$resource', 'DB', 'LoginService', function( 
         
         return User;
     };
+    // Clear All Data
+    User.clear = function() { return User.data = {}, User; };
     User.updateProp = function( prop, val ) { User.data[ prop ] = val; return User; };
     // User Is Active
     User.isActive = function() { return User.data.active };
@@ -41,32 +43,33 @@ app.service('User', ['$rootScope', '$resource', 'DB', 'LoginService', function( 
     };
     // Login User
     User.login = function( data ) {
-        // console.dir(UserAPI);
-        // var user = UserAPI.get( data ).$promise;
-        // return new Promise(function(res, rej){
-        //     // Resolve or Reject The User
-        //     user.then(function( u ){ return u.error || u.err || u.message ? rej( u ) : res( u); });
-        // });
-        Auth.login( data ).then(function( user ){
-            console.log("User Logged In!", user); 
+        return Auth.login( data ).then(function( user ){
+            // console.log("User Logged In!", user);
+            User.update( user ).save();
+            // Return The Logged In User
+            rootScope.$broadcast('user:loggedIn', user);
+            // Return to Caller
+            return user;
+        });
+    };
+    // Logout User
+    User.logout = function() {
+        // Empty The User Object
+        return Auth.logout().then(function( user ){
+            // Clear the user
+            User.clear().save();
+            // Return the logged out user object
+            rootScope.$broadcast('user:loggedOut', user);
+            // Return to Caller
+            return user;
         });
     };
     // Key Listeners
-    rootScope.$on('user:update', function(ev, user){ // Update User Data
-        User.update( user ).save();
-    });
     
-    rootScope.$on('user:loggedIn', function(ev, user){ // Update User Data
-        // Debugging
-        // console.log("logged", user);
-        User.update( user ).save();
-    });
-    
-    rootScope.$on('user:loggedOut', function(ev, user){ // Update User Data
-        User.update( user ).save();
-    });
+    // Update User Data
+    rootScope.$on('user:update', function(ev, user){ User.update( user ).save(); });
     // Login Through rootscope
-    rootScope.$on('user:login', function(ev, user){ User.login(); });
+    rootScope.$on('user:login', function(ev, user){ User.login( user ); });
     // Logout through rootscope
     rootScope.$on('user:logout', function(ev){ User.logout(); });
     // Return Service
