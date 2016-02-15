@@ -1,16 +1,38 @@
-<div class="navbar-fixed">
-   <nav class="primary-nav">
-      <div class="nav-wrapper">
-         <a ui-sref="home.index" class="brand-logo"><img src="./images/trenderzhub/Trenderz-Hub-Logo.svg" alt="Shop Local.">
-         <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span></span>
+<nav class="navbar navbar-fixed-top navbar-default primary-nav">
+   <div class="nav-wrapper container-fluid">
+      <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navigation" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+         </button>
+         <a ui-sref="home.index" class="navbar-brand brand-logo"><img src="./images/trenderzhub/Trenderz-Hub-Logo.svg" alt="Shop Local.">
+            <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span></span>
          </a>
-         <ul class="right hide-on-med-and-down">
-            <li ng-class="{active:link.active}" ng-repeat="link in links"><a href ng-click="goTo(link.sref, link)">{{ link.title }}</a></li>
-            <li class="vertical-divider"> | </li>
-            <li ng-if="loggedIn"><a href ng-click="goTo('account.page')">Account</a></li>
-            <li ng-if="!loggedIn"><a href ng-click="goTo('pages.signup')">Sign Up</a></li>
-         </ul>
       </div>
-   </nav>
-   <shopping-cart></shopping-cart>
-</div>
+   </div>
+   <div id="primary-navigation" class="full-nav collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+         <li class="nav-link" ng-class="{active:link.active}" ng-repeat="link in links"><span class="sr-only">(current)</span><a href ng-click="goTo(link.sref, link)">{{ link.title }}</a></li>
+         <li class="vertical-divider"> | </li>
+         <li class="nav-link" ng-if="loggedIn"><a href ng-click="goTo('account.page')">Account</a></li>
+         <li class="nav-link" ng-if="!loggedIn"><a href ng-click="goTo('pages.signup')">Sign Up</a></li>
+
+         <li class="nav-link dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <li><a href="#">Action</a></li>
+               <li><a href="#">Another action</a></li>
+               <li><a href="#">Something else here</a></li>
+               <li role="separator" class="divider"></li>
+               <li><a href="#">Separated link</a></li>
+               <li role="separator" class="divider"></li>
+               <li><a href="#">One more separated link</a></li>
+            </ul>
+         </li>
+      </ul>
+   </div>
+   </div>
+</nav>
+<shopping-cart></shopping-cart>

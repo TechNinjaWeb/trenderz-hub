@@ -296,5 +296,17 @@ app.directive('pwCheck', ['Users', function(Users) {
                 })
             };
         }
-    }
+    };
 }]);
+
+
+app.directive('fullwidthSlideshow', function(){
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: './app/modules/fullwidth.slideshow/slideshow.html',
+        link: ['$scope', function( scope ){
+            console.log("Linked Slider");
+        }]
+    };
+})

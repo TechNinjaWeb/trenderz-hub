@@ -151,8 +151,8 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
             function cartIsEmpty() {
                 if (scope.cart.products.length <= 0) return parent.animate().addClass('animated fadeOut')
                     .delay(800).queue(function(next){ next() }), true;
-                else parent.animate().removeClass('hidden animated fadeOut')
-                    .delay(800).queue(function(next){ parent.addClass('animated fadeIn'); next() }), false;
+                else parent.removeClass('hidden animated fadeOut').addClass('animated fadeIn').animate()
+                    .delay(800).queue(function(next){ parent; next() }), false;
             }
             window.parent = parent;
             window.button = button;

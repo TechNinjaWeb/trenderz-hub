@@ -1,18 +1,21 @@
-<ul class="feature-container row">
-    <li class="card small col s12 m4 offset-m1 l3 offset-l1 no-pad" ng-repeat="product in products">
-        <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="http://materializecss.com/images/office.jpg">
-        </div>
-        <div class="card-content">
-            <div class="card-title activator grey-text text-darken-4 row">
-                <div class="price left-align col s10">${{ product.price }}</div>
-                <div class="icon-container col s1 right-align"><i class="material-icons right">more_vert</i></div>
-                <div class="title col s12 left-align">{{ product.name | ellipses:20 }}</div>
+<ul class="feature-container align-this">
+    <li class="align-item tile align-stretch" ng-repeat="product in products">
+        <div class="tile-content">
+            <div class="tile-header">
+                <img ng-class="item-{{ $index }}" class="feature-image img-responsive" src="http://materializecss.com/images/office.jpg">
+                <div class="tile-title">
+                    <div class="title left-align">{{ product.name | ellipses:20 }}</div>
+                    <div class="price left-align">${{ product.price }}</div>
+                </div>
+            </div>
+            <div class="tile-footer center-align">
+                <div class="activator icon-container left-align"><i class="fa fa-sm fa-bars"></i></div>
+                <a href ng-click="goTo('products.detail', product)">View Item</a>
             </div>
         </div>
-        <div class="card-footer center-align"><a href ng-click="goTo('products.detail', product)">View Item</a></div>
-        <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">{{ product.name }}<i class="material-icons right">close</i></span>
+        
+        <div class="tile-reveal hidden">
+            <span class="tile-title grey-text text-darken-4">{{ product.name }}<i class="material-icons right">close</i></span>
             <p>{{ product.description | decodeText | ellipses:100 }}</p>
             <a href ng-click="goTo('products.detail', product)">View Item</a>
         </div>
