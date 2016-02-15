@@ -101,13 +101,13 @@ app.directive('shoppingCart', ['$compile', '$timeout', 'ShoppingCart', '$rootSco
                 cartIsEmpty();
             });
             
-            rootScope.$on('cart:updated', function(e, cart){
+            scope.$on('cart:updated', function(e, cart){
             //   console.log("Updated Cart", cart);
               scope.cart = cart;
               if (cart.products.length <= 0) scope.$emit('cart:empty');
            });
             
-            rootScope.$on('cart:empty', function(ev, bool){
+            scope.$on('cart:empty', function(ev, bool){
                 // Hide Empty Cart
                if (bool) Cart.clear();
                cartIsEmpty();
