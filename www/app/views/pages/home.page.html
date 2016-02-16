@@ -51,7 +51,7 @@
    }
    
    .home-page .featured-parallax {
-      height: 600px;
+      min-height: 600px;
    }
    
    .home-page .services-block {
@@ -59,25 +59,38 @@
       min-height: 400px;
    }
    
-   .browse-stores .section {
+   .home-page .browse-stores .section {
       margin-bottom: 60px;
    }
    
-   .browse-stores .message {
+   .home-page .browse-stores .message {
       padding: 30px 0;
    }
    
-   .browse-stores-btn-container {
+   .home-page .browse-stores-btn-container {
       margin: 38px 0;
    }
    
    .home-page .message-section {
-      margin-bottom: 20px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+   }
+   
+   .home-page .unique-message.container {
+      margin-top: 100px;
+      margin-bottom: 100px;
+   }
+   
+   .home-page .unique-message .title {
+       top: 12px;
+       left: 40%;
+       color: seashell;
+       font-family: cursive;
    }
 </style>
 <div class="home-page">
    <div class="slider" slider>
-      <ul class="slides">
+      <ul class="slides shadow">
          <li>
             <img src="./images/trenderzhub/trenderz-gifts-banner.jpg">
             <!-- random image -->
@@ -120,29 +133,20 @@
          });
       </script>
    </div>
-   <div class="newsletter-offer">
-      <div class="container">
-         <!--   Icon Section   -->
-         <div class="card row">
-            <div class="wrapper col s12">
-               <div class="message row">
-                  <h6 class="heading col s6 offset-s2">Sign Up For Our Newsletter</h6>
-                  <!--<p class="body col s6 offset-s2">Sign up for our monthly newsletter.-->
-                  </p>
-               </div>
-               <div class="sign-up input-group row">
-                  <input class="col s6 offset-s2" type="email" name="signup" placeholder="Sign Up With Email">
-                  <button class="sign-up-btn btn col s2 green lighten3">Ok!</button>
-               </div>
-            </div>
-         </div>
+   <div class="unique-message container">
+      <div class="heading center-align">
+         <h3 class="title th-alt-green-text">
+            Some Really Sweet Quote <br>
+            That Will Make This Site Feel <br>
+            Like Home
+         </h3>
       </div>
    </div>
    <div class="action-box container">
       <div class="content-wrapper white row">
-         <div class="browse-stores col s12 m6 center-block">
+         <div class="browse-stores col s12 m6 center">
             <div class="image col s12 m6"><img class="img-responsive" src="./images/trenderzhub/browse-stores.png" alt=""></div>
-            <div class="meassage text-center col s6">
+            <div class="meassage col s12 m6">
 
                <h3 class="heading">Browse Stores</h3>
                <div class="body inset-text">
@@ -155,9 +159,9 @@
 
             </div>
          </div>
-         <div class="open-store col s12 m6 center-block">
+         <div class="open-store col s12 m6 center">
             <div class="image col s12 m6"><img class="img-responsive" src="./images/trenderzhub/open-store.png" alt=""></div>
-            <div class="meassage text-center col s6">
+            <div class="meassage col s12 m6">
 
                <h3 class="heading">Open A Store</h3>
                <div class="body inset-text">
@@ -182,7 +186,7 @@
             </div>
          </div>
       </div>
-      <div class="parallax"><img src="http://materializecss.com/templates/parallax-template/background3.jpg" alt="Unsplashed background img 2" style="display: block; transform: translate3d(-50%, 410px, 0px);"></div>
+      <div class="parallax"><img src="https://pixabay.com/static/uploads/photo/2015/04/29/21/11/matroeska-746131_960_720.jpg" alt="Unsplashed background img 2" style="display: block; transform: translate3d(-50%, 410px, 0px);"></div>
    </div>
    <div class="message-section section container">
       <div class="message">
@@ -220,27 +224,45 @@
          </div>
       </div>
    </div>
-
-   <div class="container">
-      <div class="section">
-
-         <div class="row">
-            <div class="col s12 center">
-               <h3><i class="mdi-content-send brown-text"></i></h3>
-               <h4>Contact Us</h4>
-               <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id,
-                  viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac,
-                  gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+   <div class="newsletter-offer">
+      <div class="container">
+         <!--   Icon Section   -->
+         <div class="card row">
+            <div class="wrapper col s12">
+               <div class="message row">
+                  <h6 class="heading col s6 offset-s2">Sign Up For Our Newsletter</h6>
+                  <!--<p class="body col s6 offset-s2">Sign up for our monthly newsletter.-->
+                  </p>
+               </div>
+               <div class="sign-up input-group row">
+                  <input class="col s6 offset-s2" type="email" name="signup" placeholder="Sign Up With Email">
+                  <button class="sign-up-btn btn col s2 green lighten3">Ok!</button>
+               </div>
             </div>
          </div>
-
+      </div>
+   </div>
+   <div class="signup container">
+      <div class="row center-align">
+         <div class="col s12 m6 offset-m3">
+            <h3><i class="mdi-content-send brown-text"></i></h3>
+            <h4>Join Our Beta Launch Program!</h4>
+            <p class="light left-align">
+               We are entering our beta phase of launch and looking for
+               <br> eager business owners and product vendors to help us grow.
+               <br>
+               <br> If You would like to be considered. Please create a Buyer Account and 
+               check the "Request Beta Invite" box.
+            </p>
+            <div class="signup-btn-box">
+               <button class="signup-btn btn btn-large" ng-click="goTo('pages.signup')">
+                  Sign Up
+               </button>
+            </div>
+         </div>
       </div>
    </div>
 </div>
-
-
-<!--<div class="hiddendiv common"></div>-->
-<!--<div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>-->
 <script type="text/javascript">
    (function($) {
       $(function() {

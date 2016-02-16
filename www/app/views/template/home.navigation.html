@@ -1,15 +1,16 @@
 <div class="navbar-fixed">
-   <nav class="primary-nav">
+   <small-nav></small-nav>
+   <nav class="primary-nav hide-on-med-and-down">
       <div class="nav-wrapper">
          <a ui-sref="home.index" class="brand-logo"><img src="./images/trenderzhub/Trenderz-Hub-Logo.svg" alt="Shop Local.">
-         <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span></span>
+            <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span></span>
          </a>
          <ul class="right hide-on-med-and-down">
             <li ng-class="{active:link.active}" ng-repeat="link in links"><a href ng-click="goTo(link.sref, link)">{{ link.title }}</a></li>
             <li class="vertical-divider"> | </li>
             <li ng-if="user.isAdmin"><a href ng-click="goTo('admin.dash')">Admin</a></li>
-            <li ng-if="user.hasOwnProperty('_id') && user.roles.indexOf('Registered')"><a href ng-click="goTo('admin.dash')">Store</a></li>
-            <li ng-if="user.hasOwnProperty('_id')"><a href ng-click="goTo('account.page')">Account</a></li>
+            <li ng-if="user.hasOwnProperty('_id') && user.roles.indexOf('Member') >= 0"><a href ng-click="goTo('admin.dash')">Store</a></li>
+            <li ng-if="user.hasOwnProperty('_id') && user.roles.indexOf('Registered') >= 0"><a href ng-click="goTo('account.page')">Account</a></li>
             <li ng-if="!user.hasOwnProperty('_id')"><a href ng-click="goTo('pages.signup')">Sign Up</a></li>
          </ul>
       </div>

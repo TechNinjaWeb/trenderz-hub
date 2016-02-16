@@ -45,20 +45,23 @@ module.exports = {
             if (user) newUser = new User( user );
         }
         // Sanitize The Ref
+        console.log("New User is", newUser, user);
+        console.log('req.body', req.body, 'req.query', req.query, 'req.params', req.params);
+        if (!newUser || newUser === undefined) return res.status(200).json({error: {errmsg: 'bad user config'}, response: [req.body, req.params, req.query]});
         newUser.sanitize();
         // Add Basic User Role
         newUser.roles.push('Registered');
-        
+        console.log("Creating User", newUser);
         // console.log("User After Sanitize", user);
         newUser.save(function(err, response) {
         //   console.log("Saved User:", response);
-           if (err) return res.status(200).json({error: err, response: response});
+           if (err) return res.status(200).json({error: {errmsg: err}, response: response});
            res.status(200).json(newUser);
         });
         
     },
     put: function(req, res, next) {
-    
+        console.log("Got Put",'req.body', req.body, 'req.query', req.query, 'req.params', req.params);
     },
     delete: function(req, res, next) {
     

@@ -13,6 +13,14 @@ app.run(function($rootScope, $http, $location){
   }
 });
 
+app.config(['$httpProvider', function ($httpProvider) {
+  //Reset headers to avoid OPTIONS request (aka preflight)
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+}]);
+
 app.service('Stores', ['$resource', function($resource) {
     return window.resource = $resource('https://trenderzhub-techninja.c9users.io/Stores/:id', {id: '@id'}, 
     {

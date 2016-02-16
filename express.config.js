@@ -15,6 +15,34 @@ var compressionFilter = function(req, res) {
     return compression.filter(req, res);
 };
 
+ var allow_cross_domain= function(req, res, next) {
+      res.header('X-Powered-By', 'muah.hahahaha.org');
+
+      var oneof = false;
+      if(req.headers.origin) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+      }
+      if(req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+      }
+      if(req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+      }
+      if(oneof) {
+        res.header('Access-Control-Max-Age', 60 * 60 * 24 * 365);
+      }
+    // intercept OPTIONS method
+    if (oneof && req.method == 'OPTIONS') {
+      res.header('Access-Control-Request-Method', 'OPTIONS');
+    } else {
+      next();
+    }
+}
+
+
 // Connect To Mongo
 mongo.connect('mongodb://localhost/trenderz');
 
@@ -35,6 +63,7 @@ app.use('/css', express.static(__dirname + '/bower_components'));
 app.use('/font', express.static(__dirname + '/bower_components'));
 app.use('/images', express.static(__dirname + '/www/images'));
 
+
 app.use(sessions({
     cookieName: 'THCookie', // cookie name dictates the key name added to the request object 
     secret: 'yovegottabekiddingmeicantbelieveitsnotbutter', // should be a large unguessable string 
@@ -42,13 +71,29 @@ app.use(sessions({
     activeDuration: 1000 * 60 * 5 // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds 
 }));
 
+app.use(allow_cross_domain);
+
 app.use(function headers(req, res, next){
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Content-Type', 'application/json');
-    res.set('Allow-Origin', 'trenderzhub-techninja.c9users.io');
-    
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Allow-Origin', 'trenderzhub-techninja.c9users.io');
+
+    res.header('Access-Control-Allow-header', 'Content-Length');
+    res.header('Access-Control-Allow-header', 'Authorization');
+    res.header('Access-Control-Allow-header', 'Content-Type');
+    res.header('Access-Control-Request-Method', 'GET');
+    res.header('Access-Control-Request-Method', 'POST');
+    res.header('Access-Control-Request-Method', 'PUT');
+    res.header('Access-Control-Request-Method', 'DELETE');
+    res.header('Content-Type', 'application/json;charheaders=UTF-8');
+    res.header('Content-Type', 'text/plain;charset=UTF-8');
+    // console.log("moving next", req)
     next();
 });
+
+app.use(function(req, res, next){
+   console.log("req.url", req.url, req.method);
+   next();
+})
 
 // app.use(function(req, res, next) {
 //     if (true) console.log("It's true", req.THCookie);

@@ -169,6 +169,35 @@ app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '
     // Login and Out
     $rootScope.login = User.login;
     $rootScope.logout = User.logout;
+    
+    // Configure Loading Screen
+    $rootScope.config = {};
+    $rootScope.config.app_url = $location.url();
+    $rootScope.config.app_path = $location.path();
+    $rootScope.layout = {};
+    $rootScope.layout.loading = false;
+    
+    $rootScope.$on('$stateChangeStart', function() {
+        console.log('$stateChangeStart');
+        //show loading gif
+        $timeout(function() {
+            $rootScope.layout.loading = true;
+        });
+    });
+    $rootScope.$on('$stateChangeSuccess', function() {
+        console.log('$stateChangeSuccess');
+        //hide loading gif
+        $timeout(function() {
+            $rootScope.layout.loading = false;
+        }, 200);
+    });
+    $rootScope.$on('$stateChangeError', function() {
+    
+        //hide loading gif
+        alert('wtff');
+        $rootScope.layout.loading = false;
+    
+    });
 
     // Primary Functions    
     $rootScope.goTo = function(statename, data, params) {
@@ -193,6 +222,29 @@ app.run(['$rootScope', '$state', '$stateParams', '$location', '$anchorScroll', '
     });
     // Window Factory
     window.anchorScroll = $anchorScroll;
+    // Authentication Check
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
+        var needAuth = toState.name.search('account') >= 0 ? true : false;
+        var needAdmin = toState.name.search('admin') >= 0 ? true : false;
+        // Debugging
+        // console.log("Going To " + toState.name, ['needsAuth', needAuth, 'needAdmin', needAdmin]);
+        // Needs Auth and Admin
+        if (needAdmin)
+            return !!$rootScope.user.username && $rootScope.user.roles.indexOf('Member') >= 0 || !!$rootScope.user.username && $rootScope.user.roles.indexOf('Admin') >= 0 
+                ? null
+                : reroute();
+        // Needs Auth Only
+        if (needAuth)
+            return !!$rootScope.user.username && $rootScope.user.roles.indexOf('Registered') >= 0 
+                ? null
+                : reroute();
+        
+        function reroute(){
+            // console.log("Rerouting You Dummy!", $rootScope.user.roles);
+            event.preventDefault();
+            state.go('home.index');
+        }
+    });
 }]);
 
 app.controller('appCtrl', ['$scope', '$state', '$stateParams', 'User', function(scope, state, params, User) {
@@ -271,12 +323,29 @@ app.controller('membershipCtrl', ['$scope', 'Memberships', function(scope, Level
     });
 }]);
 
-app.controller('signupCtrl', ['$scope', 'Users', function(scope, Users) {
+app.controller('signupCtrl', ['$scope', 'Users', '$rootScope', function(scope, Users, rootScope) {
     scope.user = {};
     
     scope.login = function( user )  {
         console.log("Login User", user);
         scope.$emit('user:login', user);
+    };
+    
+    scope.createUser = function(data) {
+        if (data.password !== data.confirm || !data.password) return console.warning("Passwords Do Not Match");
+        var User = new Users({ user: data });
+        console.log("Created New User to save", User);
+        
+        User.$create(function( user ){
+            if (user.error) {
+                // if (user.error.errmsg.search('duplicate')) return console.warning("Username Already Exists"), console.warn("Dup User", user.error);
+                // else return console.warn( user.error.errmsg ), console.warn("Cannot Determine Error", user.error);
+                return console.log("Not Valid", user);
+            }
+            
+            console.log("Saved User", user);
+            rootScope.$broadcast('user:created', user);
+        });
     };
 }]);
 
@@ -292,20 +361,39 @@ app.directive('pwCheck', ['Users', function(Users) {
                     ctrl.$setValidity('pwmatch', v);
                 });
             });
-            
-            scope.create = function(data) {
-                if (data.password !== data.confirm || !data.password) return console.warning("Passwords Do Not Match");
-                var User = new Users(data);
-                console.log("Created New User to save", User);
-                
-                User.$save(function( user ){
-                    if (user.error) {
-                        if (user.error.errmsg.search('duplicate')) return console.warning("Username Already Exists"), console.warn("Dup User", user.error);
-                        else return console.warn( user.error.errmsg ), console.warn("Cannot Determine Error", user.error);
-                    };
-                    console.log("Saved User", user);
-                })
-            };
         }
     }
 }]);
+
+app.directive('loader', ['$compile', function( $compile ){
+    return {
+      restrict: 'EA',
+      replace: true,
+      link: function( scope, elem, attrs ) {
+          var img = '<img src="http://lp.optionweb.com/it/landing1/images/Loading.gif"'+
+          'ng-hide="!layout.loading" width="100"  />';
+          // Define Loader Template
+          var loader = $compile( img )( scope );
+          // Add To Body
+          elem.append( loader );
+          console.log("Appended Loader", loader);
+      }
+    };
+}]);
+
+app.directive('smallNav', ['$compile', function( $compile ){
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: './app/views/template/small.navigation.html',
+      link: function( scope, elem, attrs ) {
+          var parent = elem;
+          var button = elem.find('.dropdown-button');
+          
+          // Enable Dropdown
+          button.dropdown();
+          console.log("Small Nav Loaded", elem, button);
+      }
+    };
+}]);
+

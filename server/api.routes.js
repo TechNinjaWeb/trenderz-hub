@@ -2,14 +2,17 @@ var router = require('express').Router();
 var routes = require('./routes');
 
 module.exports = function( app ) {
-   
+   app.use(function(req, res, next){
+       console.log("req.url", req.url, req.method);
+       next();
+   })
     app.route('/Users')
         .get(routes.users.get)
         .post(routes.users.post);
         
     app.route('/Users/:id')
         .get(routes.users.getId)
-        .put(function(){});
+        .put(function(){console.log('yo')});
         
     app.get('/User/:username', routes.users.getUser);
     

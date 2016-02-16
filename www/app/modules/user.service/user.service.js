@@ -40,10 +40,12 @@ app.service('User', ['$rootScope', '$resource', 'DB', 'LoginService', function( 
         var saved = DB.session.save('User', user);
         rootScope.$broadcast('user:updated', saved);
         // console.info("Updated User", saved);
+        return User;
     };
     // Login User
     User.login = function( data ) {
-        return Auth.login( data ).then(function( user ){
+        return Auth.login( {username: data.username, password: data.password} ).then(function( user ){
+            if (!user._id) return rootScope.$broadcast('login:error', user), console.log("Failed Login", user);
             // console.log("User Logged In!", user);
             User.update( user ).save();
             // Return The Logged In User
@@ -66,6 +68,8 @@ app.service('User', ['$rootScope', '$resource', 'DB', 'LoginService', function( 
     };
     // Key Listeners
     
+    // User Created
+    rootScope.$on('user:created', function(ev, user){ User.set( user ).save().login( user ) });
     // Update User Data
     rootScope.$on('user:update', function(ev, user){ User.update( user ).save(); });
     // Login Through rootscope
@@ -77,12 +81,20 @@ app.service('User', ['$rootScope', '$resource', 'DB', 'LoginService', function( 
 }]);
 
 app.service('Users', ['$resource', function($resource) {
-    return window.resource = $resource('https://trenderzhub-techninja.c9users.io/Users/:id', {name: '@id'}, 
+    return window.resource = $resource('https://trenderzhub-techninja.c9users.io/Users', {name: '@id', user: '@user'}, 
     {
         getId: {
             method: 'GET',
             isArray: true,
             name: '@id'
+        },
+        create: {
+            method: 'POST',
+            user: '@user',
+            transformRequest: function (data) {
+                console.log("Transformed", data.user);
+                return data;
+            }
         }
     });
 }]);

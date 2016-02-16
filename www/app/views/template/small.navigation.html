@@ -1,0 +1,12 @@
+<nav class="small-nav hide-on-large-only th-purple">
+    <a class="dropdown-button" href data-activates="small-nav">
+        <i class="material-icons">reorder</i>
+    </a>
+    <ul id="small-nav" class="dropdown-content">
+        <li class="center-align" ng-class="{active:link.active}" ng-repeat="link in links"><a href ng-click="goTo(link.sref, link)">{{ link.title }}</a></li>
+    </ul>
+
+    <a ui-sref="home.index" class="brand-logo"><img src="./images/trenderzhub/Trenderz-Hub-Logo.svg" alt="Shop Local.">
+        <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span></span>
+    </a>
+</nav>
