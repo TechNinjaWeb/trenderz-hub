@@ -14,7 +14,7 @@ export class DomInjectableService {
    get document() : any {
       return this.doc;
    }
-  constructor(@Inject(DOCUMENT) private doc: any) {}
+  constructor(@Inject(DOCUMENT) public doc: any) {}
   
    link(namespace: string, reference: any): void {
    		let window = _window();

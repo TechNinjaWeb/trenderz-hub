@@ -1,0 +1,260 @@
+<div class="container">
+  <header>
+    <div class="site-links">
+      <div class="top-links d-flex justify-content-end">
+        <ul class="list-unstyled d-inline-flex links">
+          <li class="first">
+            <a routerLink="/account" title="My Account">My Account</a>
+          </li>
+          <li>
+            <a routerLink="/wishlist" title="My Wishlist">My Wishlist</a>
+          </li>
+          <li>
+            <a routerLink="/checkout/" title="Checkout" class="top-link-checkout">Checkout</a>
+          </li>
+          <li>
+            <a routerLink="/browse-stores" title="Stores">Browse Stores</a>
+          </li>
+          <li>
+            <a routerLink="/open-a-store" title="Open A Store" class="top-link-cart">Open A Store</a>
+          </li>
+          <li class=" last">
+            <a href="login/" title="Log In">Log In</a>
+          </li>
+        </ul>
+      </div>
+      <div class="important-links d-flex justify-content-end">
+        <ul class="links list-unstyled d-inline-flex">
+          <li class="first">
+            <a routerLink="/mall-policy" fragment="buying-information">Buying Information</a>
+          </li>
+          <li>
+            <a routerLink="/mall-policy" fragment="selling-information">Selling Information</a>
+          </li>
+        </ul>
+      </div>
+      <div class="search-box col-sm-12 d-flex justify-content-end">
+        <form class="form-inline" id="search_mini_form" action="http://trenderzhub.localhost.com/catalogsearch/result/" method="get">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." />
+              <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">Search</button>
+                  </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <a ui-sref="home.index" class="brand-logo" href="#/">
+      <img class="site-logo" src="/assets/images/trenderzhub/Trenderz-Hub-Logo.svg" alt="TrenderzHub" />
+      <span class="logo-text th-green-text">Trenderz <span class="alt-color">Hub</span>
+      </span>
+    </a>
+    <nav class="navbar navbar-inverse navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">TrenderzHub</a>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Body</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mind</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Surroundings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Other</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div id="carouselExampleIndicators" class="carousel slide shadow" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3" class=""></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="4" class=""></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <img class="d-block img-fluid" src="http://localhost:4200/assets/images/trenderzhub/trenderz-gifts-banner.jpg" alt="First slide"
+        />
+      </div>
+      <div class="carousel-item">
+        <img class="d-block img-fluid" src="http://localhost:4200/assets/images/trenderzhub/trenderz-hommade-banner.jpg" alt="Second slide"
+        />
+      </div>
+      <div class="carousel-item">
+        <img class="d-block img-fluid" src="http://localhost:4200/assets/images/trenderzhub/trenderz-tools-banner.jpg" alt="Third slide"
+        />
+      </div>
+      <div class="carousel-item">
+        <img class="d-block img-fluid" src="http://localhost:4200/assets/images/trenderzhub/trenderz-carousel-banner.jpg" alt="Fourth slide"
+        />
+      </div>
+      <div class="carousel-item">
+        <img class="d-block img-fluid" src="http://localhost:4200/assets/images/trenderzhub/trenderz-video-banner.jpg" alt="Fourth slide"
+        />
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="unique-message text-center">
+      <div class="heading">
+        <h3 class="title th-alt-green-text">
+          Some Really Sweet Quote <br> That Will Make This Site Feel <br> Like Home
+        </h3>
+      </div>
+    </div>
+  <div class="action-container white row">
+    <div class="browse-stores col-sm-12 col-md-6 row text-center">
+      <div class="image col-sm-12 col-md-6">
+        <img alt="" class="img-fluid" src="/assets/images/trenderzhub/browse-stores.png" />
+      </div>
+      <div class="meassage col-sm-12 col-md-6 d-flex flex-column justify-content-center">
+        <h3 class="heading">Browse Stores</h3>
+        <div class="inset-text">
+          Browse Stores
+          <br /> Listed on Trenderz Hub
+        </div>
+        <div class="footer">
+          <button class="btn purple" routerLink="/browse-stores">Sure!</button>
+        </div>
+      </div>
+    </div>
+    <div class="open-store col-sm-12 col-md-6 row text-center">
+      <div class="image col-sm-12 col-md-6">
+        <img alt="" class="img-fluid" src="/assets/images/trenderzhub/open-store.png" />
+      </div>
+      <div class="meassage col-sm-12 col-md-6 d-flex flex-column justify-content-center">
+        <h3 class="heading">Open A Store</h3>
+        <div class="inset-text">
+          Checkout How
+          <br /> to Open a Store
+        </div>
+        <div class="footer">
+          <button class="block-center btn btn-default" routerLink="/open-a-store">Alright!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="message-section section">
+    <div class="message">
+      <div class="services-block row action-container">
+        <div class="block col-sm-12 col-md-4">
+          <div class="service col-sm-12 text-center">
+            <i class="material-icons large">view_module</i>
+            <div class="service text-left">
+              We are a new and upcoming brand from Edmonton, and we enjoy being a part of this Community!
+            </div>
+          </div>
+        </div>
+        <div class="block col-sm-12 col-md-4">
+          <div class="service col-sm-12 text-center">
+            <i class="material-icons large">shopping_basket</i>
+            <div class="service text-left">
+              Here is some really long text about how much our company wants your business, and strives to meet all of your needs.
+            </div>
+          </div>
+        </div>
+        <div class="block col-sm-12 col-md-4">
+          <div class="service col-sm-12 text-center">
+            <i class="material-icons large">receipt</i>
+            <div class="service text-left">
+              We are a new and upcoming brand from Edmonton, and we enjoy being a part of this Community!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="signup container">
+  <div class="col-sm-12 col-md-6 offset-md-3">
+    <h3>
+      <i class="mdi-content-send brown-text"></i>
+    </h3>
+    <h4 class="text-center">Join Our Beta Launch Program!</h4>
+    <p class="light">
+      We are entering our beta phase of launch and looking for
+      <br /> eager business owners and product vendors to help us grow.
+      <br />
+      <br /> If You would like to be considered. Please create a Buyer Account and check the "Request Beta Invite" box.
+    </p>
+    <div class="signup-btn-box text-center">
+      <button class="signup-btn btn btn-large col-sm-12" ng-click="goTo('pages.signup')">
+          Sign Up
+        </button>
+    </div>
+  </div>
+</div>
+
+<div ui-view="footer" class="animation">
+  <footer class="page-footer th-green white-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <h5 class="white-text">Company Info</h5>
+          <p class="grey-text text-lighten-4">We believe our community is the strongest bond we share. Trenderz Hub features products from merchants who are
+            local. Our goal is to support local by encouraging a market of like-minded friends helping friends.</p>
+        </div>
+        <div class="col-lg-3 col-sm-12">
+          <h5 class="white-text">Links</h5>
+          <ul class="list-unstyled">
+            <li class="">
+              <a class="white-text ng-binding" href="#"> Company Info</a>
+            </li>
+            <li class="">
+              <a class="white-text ng-binding" href="#"> Contact Us</a>
+            </li>
+            <li class="">
+              <a class="white-text ng-binding" href="#"> Orders Page</a>
+            </li>
+            <li class="">
+              <a class="white-text ng-binding" href="#"> Mall Policy</a>
+            </li>
+            <li class="">
+              <a class="white-text ng-binding" href="#"> Privacy Policy</a>
+            </li>
+            <li class="">
+              <a class="white-text ng-binding" href="#"> Sign Up</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-sm-12">
+          <h5 class="white-text">Social</h5>
+          <ul>
+            <!-- ngRepeat: link in social -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="d-flex flex-row">
+        <div class="tn-copyright text-left col-sm-6">Developed by <a class="brown-text text-lighten-3" href="http://tech-ninja.ca">Tech Ninja</a>
+        </div>
+        <div class="th-copyright text-right col-sm-6">Copyright <a class="brown-text text-lighten-3" href="http://trenderzhub.ca">Trenderz Hub®</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

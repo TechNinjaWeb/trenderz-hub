@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { DomInjectableService } from './../dom-injectable-service/dom-injectable-service';
-import { AlertController } from 'ionic-angular';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 function safeStringify(item) {
