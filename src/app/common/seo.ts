@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { DomInjectableService } from './../../providers/dom-injectable-service/dom-injectable-service';
+import { DomInjectableService } from './../providers/dom-injectable-service/dom-injectable-service';
 // import { getDOM } from '@angular/platform-browser/src/dom/dom_adapter';
 
 @Injectable()

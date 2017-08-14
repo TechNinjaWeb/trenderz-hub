@@ -1,6 +1,6 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 
-import { DomInjectableService } from './../providers/dom-injectable-service/dom-injectable-service';
+import { DomInjectableService } from './providers/dom-injectable-service/dom-injectable-service';
 import { SeoService } from './common/seo';
 
 @Component({

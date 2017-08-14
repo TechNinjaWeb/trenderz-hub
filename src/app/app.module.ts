@@ -17,21 +17,14 @@ import { AppRouter } from './app.router';
 
 // Provider Declarations
 import { SeoService } from './common/seo';
-import { ParseService } from '../providers/parse-service/parse-service';
-import { AuthService } from './../providers/auth/auth';
-import { UserProvider } from '../providers/user/user';
-import { DomInjectableService } from '../providers/dom-injectable-service/dom-injectable-service';
-import { DebugProvider } from '../providers/debug/debug';
+import { ParseService } from './providers/parse-service/parse-service';
+import { AuthService } from './providers/auth/auth';
+import { UserProvider } from './providers/user/user';
+import { DomInjectableService } from './providers/dom-injectable-service/dom-injectable-service';
+import { DebugProvider } from './providers/debug/debug';
 
 // Page Declarations
 import { AppComponent } from './app.component';
-import { BrowseStoresComponent } from './browse-stores/browse-stores.component';
-import { OpenStoreComponent } from './open-store/open-store.component';
-import { LoginComponent } from './login/login.component';
-import { MallPolicyComponent } from './mall-policy/mall-policy.component';
-import { BetaLaunchComponent } from './beta-launch/beta-launch.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -44,13 +37,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
 @NgModule({
   declarations: [
     AppComponent,
-    BrowseStoresComponent,
-    OpenStoreComponent,
-    LoginComponent,
-    MallPolicyComponent,
-    BetaLaunchComponent,
-    PageNotFoundComponent,
-    HomeComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'th-app'}),
@@ -70,7 +56,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
   bootstrap: [AppComponent],
   entryComponents: [
     AppComponent,
-    PageNotFoundComponent,
   ],
   providers: [
     { provide: HAMMER_GESTURE_CONFIG,  useClass: MyHammerConfig  },

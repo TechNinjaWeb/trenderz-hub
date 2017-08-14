@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { BrowseStoresComponent } from './browse-stores/browse-stores.component';
-import { OpenStoreComponent } from './open-store/open-store.component';
-import { MallPolicyComponent } from './mall-policy/mall-policy.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { BrowseStoresComponent } from './pages/browse-stores/browse-stores.component';
+import { OpenStoreComponent } from './pages/open-store/open-store.component';
+import { MallPolicyComponent } from './pages/mall-policy/mall-policy.component';
+import { BetaLaunchComponent } from './pages/beta-launch/beta-launch.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, data: null },
@@ -23,8 +24,26 @@ const appRoutes: Routes = [
   ];
   
   @NgModule({
+    declarations: [
+      HomeComponent,
+      LoginComponent,
+      BetaLaunchComponent,
+      BrowseStoresComponent,
+      OpenStoreComponent,
+      MallPolicyComponent,
+      PageNotFoundComponent
+    ],
     imports: [
       RouterModule.forRoot( appRoutes, { enableTracing: true } )
+    ],
+    entryComponents: [
+      HomeComponent,
+      LoginComponent,
+      BetaLaunchComponent,
+      BrowseStoresComponent,
+      OpenStoreComponent,
+      MallPolicyComponent,
+      PageNotFoundComponent
     ],
     exports: [RouterModule]
   })
