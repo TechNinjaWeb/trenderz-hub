@@ -1,0 +1,39 @@
+.brand-logo {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      color: #fff;
+      display: inline-block;
+      font-size: 2.1rem;
+      padding: 0;
+      white-space: nowrap;
+  }
+  
+  .logo-text {
+      position: absolute;
+      left: 120px;
+      top: 66px;
+  }
+
+  nav {
+    margin-top: 50px;
+  }
+  
+  .navbar {
+    background-color: #49005a;
+    padding: 0;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    min-height: 65px;
+  }
+  
+  .navbar-brand {
+    visibility: hidden;
+  }
+  .nav-item {
+    margin-right: 7vw;
+  }
+  
+  .nav-link {
+    color: white !important;
+  }

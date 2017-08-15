@@ -1,3 +1,35 @@
-<p>
-  login works!
-</p>
+<th-navigation></th-navigation>
+<div class="signup-page container content pad-top">
+
+    <div class="become-a-member">
+      <h3 class="heading">Sign Up Page </h3>
+      <button type="submit" class="membership-btn btn" routerLink="/open-a-store">Become A Merchant</button>
+    </div>
+
+    <hr class="row-divider col-sm-12">
+    <div class="accounts row valign-wrapper">
+        <div class="create-user d-flex flex-column justify-content-center col-sm-12 col-md-5">
+            <h4 class="create-user-heading">Members Account</h4>
+            <p class="create-user-body">Sign up to keep track of your shopping cart and orders</p>
+            <form method="POST" name="createAccount">
+              <div class="sign-up form-group">
+                <input pInputText type="text" class="form-control username" ng-model="user.username" name="username" placeholder="Username" />
+                <input pInputText type="email" class="form-control email" ng-required ng-model="user.email" name="email" placeholder="Email" />
+                <input pPassword type="password" class="form-control password" ng-required ng-model="user.password" name="password" placeholder="Password" />
+                <input pPassword type="password" class="form-control password" ng-model="user.confirm" pw-check="user.password" name="confirm" placeholder="Confirm Password" />
+                <button type="submit" class="membership-btn btn col-sm-12" ng-click="createUser( user )">Sign Up</button>
+              </div>
+            </form>
+        </div>
+        <div class="vertical-divider col-sm-12 col-md-2"></div>
+        <div class="sign-in vertical-center d-flex flex-column justify-content-center col-sm-12 col-md-5">
+            <h4 class="message">Already A Member?</h4>
+            <div class="login form-group">
+                <input pInputText type="text" class="form-control username" ng-model="data.username" name="username" placeholder="Username" />
+                <input pPassword type="password" class="form-control password" ng-model="data.password" name="password" placeholder="Password" />
+                <button class="sign-in-btn btn col-sm-12" ng-click="login( data )">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+<th-footer></th-footer>

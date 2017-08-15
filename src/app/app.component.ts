@@ -1,7 +1,7 @@
 import { Component, EventEmitter, ViewChild } from '@angular/core';
 
 import { DomInjectableService } from './providers/dom-injectable-service/dom-injectable-service';
-import { SeoService } from './common/seo';
+import { SeoService } from '../common/seo';
 
 @Component({
   selector: 'app-root',

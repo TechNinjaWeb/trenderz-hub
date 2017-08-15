@@ -12,4 +12,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  public finsishedScroll($event) {
+    console.log("Finished Scroll", $event)
+  }
+
 }

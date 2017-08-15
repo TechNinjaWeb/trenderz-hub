@@ -1,0 +1,90 @@
+<th-navigation></th-navigation>
+<div class="checkout container content">
+  <div id="form-nav" ui-view="nav" class="animation"></div>
+  <!-- form.html -->
+  <div class="row">
+    <div class="col sm12 m8 offset-m2 action-container">
+
+      <div id="form-container">
+
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <!--<form id="signup-form" action="https://www.sandbox.paypal.com/cgi-bin/webscr" ng-submit="processForm( formData, cart )">-->
+        <form id="signup-form" ng-submit="processForm( form, cart )">
+
+          <!-- our nested state views will be injected here -->
+          <div class="checkout-nav">
+            <!-- form.html -->
+            <div class="row">
+              <div class="col m8 offset-m2">
+
+                <div id="form-container">
+
+                  <div class="page-header text-center">
+                    <h2>Payment Gateway</h2>
+
+                    <!-- the links to our nested states using relative paths -->
+                    <!-- add the active class if the state matches our ui-sref -->
+                    <div id="status-buttons" class="text-center">
+                      <a ui-sref-active="active" ui-sref="checkout.step.one"><span>1</span> Info</a>
+                      <a ui-sref-active="active" ui-sref="checkout.step.two"><span>2</span> Conditions</a>
+                      <a ui-sref-active="active" ui-sref="checkout.step.three"><span>3</span> Payment</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-three">
+              <!-- form-payment.html -->
+              <div class="text-center">
+                <span class="glyphicon glyphicon-heart"></span>
+                <h3>Confirm Your Order and Proceed To Paypal</h3>
+
+                <div class="order-box">
+                  <address> form.address  </address>
+                  <br><br>
+                  <div class="final-price">
+                    Final Price:  cart.getPrice() 
+                  </div>
+                  <ul class="items" ng-repeat="item in cart.products">
+                    <li class="cart item">
+                      Item:  item.name  Price:  item.price 
+                    </li>
+                  </ul>
+                  <!-- formData | json -->
+                </div>
+                <button type="submit" class="btn btn-danger">Submit</button>
+              </div>
+            </div>
+          </div>
+
+          <!--CallBack Options-->
+          <input type="hidden" name="return" ng-model="form.return" value="http://trenderzhub-techninja.c9users.io/paypal">
+          <input type="hidden" name="cancel" ng-model="form.cancel" value="http://trenderzhub-techninja.c9users.io/paypal">
+          <input type="hidden" name="notify_url" ng-model="form.notify_url" value="http://trenderzhub-techninja.c9users.io/paypal">
+          <input type="hidden" name="shopping_url" ng-model="form.shopping_url" value="http://trenderzhub-techninja.c9users.io/">
+          <!--Business Styling-->
+          <input type="hidden" name="cpp_logo_image" ng-model="form.cpp_logo_image" value="./images/trenderzhub/trenderz.png">
+
+          <!--Standard Hidden Inputs-->
+          <input type="hidden" name="cmd" ng-model="form.cmd" value="_cart">
+          <input type="hidden" name="upload" ng-model="form.upload" value="1">
+          <input type="hidden" name="business" value="trenderzhub.email " ng-model="form.business">
+          <!--NG Repeat These-->
+          <span class="item" ng-repeat="item in cart.products track by $index">
+                        <input type="hidden" name="item_name_$index + 1 " value="item.name ">
+                        <input type="hidden" name="amount_$index + 1 " value="item.price ">
+                        <input type="hidden" name="shipping_$index + 1 " value="0.00">
+                    </span>
+          <!--Submit Button-->
+        </form>
+
+      </div>
+      <pre>
+        form 
+    </pre>
+
+
+    </div>
+  </div>
+</div>
+<th-footer></th-footer>

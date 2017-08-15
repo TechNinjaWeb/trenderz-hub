@@ -10,13 +10,14 @@ import { HttpModule } from '@angular/http';
 // External Modules
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { Ng2SimplePageScrollModule } from 'ng2-simple-page-scroll';
 
 // Internal Modules
 import { AppRouter } from './app.router';
 // Component Declarations
 
 // Provider Declarations
-import { SeoService } from './common/seo';
+import { SeoService } from '../common/seo';
 import { ParseService } from './providers/parse-service/parse-service';
 import { AuthService } from './providers/auth/auth';
 import { UserProvider } from './providers/user/user';
@@ -25,6 +26,7 @@ import { DebugProvider } from './providers/debug/debug';
 
 // Page Declarations
 import { AppComponent } from './app.component';
+import { AnchorDirective } from './anchor.directive';
 
 
 export class MyHammerConfig extends HammerGestureConfig  {
@@ -37,6 +39,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
 @NgModule({
   declarations: [
     AppComponent,
+    AnchorDirective,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'th-app'}),
@@ -51,6 +54,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
           removeItem: true
         }
     }),
+    Ng2SimplePageScrollModule.forRoot(),
     HttpModule,
   ],
   bootstrap: [AppComponent],

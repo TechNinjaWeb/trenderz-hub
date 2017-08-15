@@ -1,0 +1,46 @@
+.site-links {
+  margin-top: 40px;
+  margin-bottom: -20px;
+  font-size: 12px;
+}
+
+.top-links ul li,
+.important-links ul li {
+  margin-right: 10px;
+  border-right: 1px solid #cacaca;
+  ;
+  padding-right: 10px;
+}
+
+.top-links ul li:last-child,
+.important-links ul li:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.site-links ul {
+  margin-bottom: 5px;
+}
+
+.top-links {
+  margin-top: 20px;
+}
+
+
+/*.important-links {*/
+
+
+/*  margin-bottom: 10px;*/
+
+
+/*}*/
+
+.site-links ul a {
+  color: #949494;
+  /*text-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.9);*/
+}
+
+.search-box {
+    padding: 0;
+    margin-top: 20px;
+}

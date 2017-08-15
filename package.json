@@ -39,6 +39,7 @@
     "jquery": "^3.2.1",
     "material-icons": "^0.1.0",
     "materialize-css": "^0.100.1",
+    "ng2-simple-page-scroll": "^2.0.0",
     "ng2-toastr": "^4.1.2",
     "parse": "^1.10.0",
     "primeng": "^4.1.3",

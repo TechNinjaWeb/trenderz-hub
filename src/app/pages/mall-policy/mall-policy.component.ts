@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DomInjectableService } from './../../providers/dom-injectable-service/dom-injectable-service';
+
 @Component({
   selector: 'th-mall-policy',
   templateUrl: './mall-policy.component.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MallPolicyComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dom: DomInjectableService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public finsishedScroll($event) {
+    console.log("Finished Scroll", $event)
   }
 
 }

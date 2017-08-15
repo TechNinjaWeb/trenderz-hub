@@ -1,0 +1,46 @@
+<div class="site-links">
+  <div class="top-links d-flex justify-content-end">
+    <ul class="list-unstyled d-inline-flex links">
+      <li class="first">
+        <a routerLink="/account" title="My Account">My Account</a>
+      </li>
+      <li>
+        <a routerLink="/wishlist" title="My Wishlist">My Wishlist</a>
+      </li>
+      <li>
+        <a routerLink="/checkout/" title="Checkout" class="top-link-checkout">Checkout</a>
+      </li>
+      <li>
+        <a routerLink="/browse-stores" title="Stores">Browse Stores</a>
+      </li>
+      <li>
+        <a routerLink="/open-a-store" title="Open A Store" class="top-link-cart">Open A Store</a>
+      </li>
+      <li class=" last">
+        <a routerLink="login" title="Log In">Log In</a>
+      </li>
+    </ul>
+  </div>
+  <div class="important-links d-flex justify-content-end">
+    <ul class="links list-unstyled d-inline-flex">
+      <li class="first">
+        <a simplePageScroll (pageScrollFinish)="finsishedScroll($event)" routerLink="/mall-policy" [pageScrollOffset]="50" href="#buying-information">Buying Information</a>
+      </li>
+      <li>
+        <a simplePageScroll (pageScrollFinish)="finsishedScroll($event)" routerLink="/mall-policy" [pageScrollOffset]="50" href="#selling-information">Selling Information</a>
+      </li>
+    </ul>
+  </div>
+  <div class="search-box col-sm-12 d-flex justify-content-end">
+    <form class="form-inline" id="search_mini_form" action="http://trenderzhub.localhost.com/catalogsearch/result/" method="get">
+      <div class="col-xs-6">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Search</button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

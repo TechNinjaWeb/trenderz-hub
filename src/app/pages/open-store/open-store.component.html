@@ -1,3 +1,33 @@
-<p>
-  open-store works!
-</p>
+<th-navigation></th-navigation>
+<div class="memberhip-page container">
+  <div class="heading">
+    <h3 class="col-xs-12">Membership Page</h3>
+    <p class="message col-xs-12">Select a package that best suits your needs.</p>
+  </div>
+  <div class="membership action-container">
+    <div class="packages row">
+      <div class="message col-sm-12"></div>
+      <ul class="memberhips inline-list">
+        <li class="membership text-center col-sm-12 col-md-3 col-lg-3" ng-repeat="level in levels">
+          <div class="panel center-align">
+            <div class="panel-heading">
+              <h3 class="name truncate"> level.name </h3>
+            </div>
+            <div class="panel-body">
+              <strong class="price" ng-if="level.price">$ 33 <span class="per">/yr</span></strong>
+              <!-- <strong class="price" ng-if="!level.price">$999.99 <span class="per">/yr</span></strong> -->
+            </div>
+            <ul class="shared-list horizontal-list">
+              <li class="item max-products"> level.maxProducts Products</li>
+              <li class="item fee"> level.fee % Sales Fee</li>
+            </ul>
+            <div class="panel-footer">
+              <button class="add-to-cart btn" ng-click="addProduct( level )">Add</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<th-footer></th-footer>
